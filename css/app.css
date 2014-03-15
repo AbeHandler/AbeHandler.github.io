@@ -1,0 +1,198 @@
+.O {fill:#9ecae1;}
+.T {fill:#3182bd;}
+
+.one {background-color:#9ecae1;}
+.two {background-color:#3182bd;}
+
+html {
+	height:100%;
+	width:100%;
+	position:relative;
+	margin  : 0;
+    padding : 0;
+}
+#map > svg > g.rivers {
+	fill: none;
+	stroke: #4e4c4d;
+	stroke-width: 3px;
+}
+
+body {
+	height:100%;
+	width:100%;
+	position:relative;
+}
+
+#mapwrapper {
+	position: relative;
+	height:100%;
+}
+
+#wrapper {
+	position: relative;
+	height:100%;
+	width:100%;
+}
+
+.box{
+	border:1px solid #4e4c4d;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+#map > svg > g > g.coastlines {
+fill: none;
+stroke: gray;
+}
+
+#byline{
+		position: absolute;
+		bottom: -1%;
+		z-index: 6;
+		right: 0px;
+		width: 100%;
+}
+
+.selected { font-weight: bold }
+
+.bold { font-weight: bold }
+
+.selectedmap { font-weight: bold }
+
+.ward{
+	fill:none;
+	stroke:white;
+}
+
+.votetotal {
+width: 100%;
+font-size:1em;
+}
+
+.racetitle{
+	font-size: .85em;
+}
+
+.left{
+	float: left;
+}
+
+#citywidesummary > ul {
+padding-left: 0%;
+}
+
+.button {
+float: left;
+margin-right: 1.5%;
+margin-left: 1.5%;
+border: 1px solid black;
+border-radius: 3px;
+padding: .75%;
+text-align: center;
+width: 13%;
+font-size: 90%;
+height: 100%;
+}
+
+.button_title{
+	font-weight: bold;
+	height: 50%;
+}
+
+.summary {
+margin-bottom:5px;
+height: 100%;
+}
+
+div.votes {
+height: 70%;
+}
+
+.votecount{
+	float:right;
+}
+
+#councilcsummary{
+	border-top:1px solid #4e4c4d;
+}
+
+#buttons{
+	font-family:'Helvetica';
+	color: #4e4c4d;
+	font-size: 80%;
+	height: 10%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 3%;
+}
+
+#map > svg > g.coastlines {
+	fill: none;
+}
+#map > svg > g {
+	stroke: #4e4c4d;
+}
+
+#results{
+	width:25%;
+	height: 85%;
+	margin-top: 7%;
+	position:absolute;
+	font-family:'Helvetica';
+	z-index: 5;
+	color: #4e4c4d;
+	font-size: 80%;
+	border-left: none;
+	border-bottom: none;
+	border-top: none;
+}
+
+.bylinetext{
+	color: #4e4c4d;
+	font-size: 50%;
+	font-family: 'Helvetica';
+}
+
+li {
+    margin-left:0px;
+}
+
+.square{
+	height: 10px;
+	width: 10px;
+	display: block;
+	margin-right: 3%;
+	float: left;
+}
+
+
+#pctreporting-citywide{
+	font-style: italic;
+	font-size: .65em;
+	color: #464445;
+}
+
+.big-button {
+width: 20%;
+}
+
+div.pctreporting {
+	font-style: italic;
+	font-size: .85em;
+	color: #464445;
+	float:none;
+	margin-left: 3%;
+}
+
+#map > svg > g {
+	stroke:black;
+}
+
+li { /* styles all li elements*/
+    list-style-type: none;
+}
+
+/*# sourceMappingURL=app.css.map*/
