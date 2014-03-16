@@ -91,6 +91,7 @@
   globals.require.brunch = true;
 })();
 window.onload = function() {
+
     $('.square').hide();
     $('#council').find('.square').show();
     $(window).resize(function() {
@@ -135,59 +136,14 @@ window.onload = function() {
     readtotals();
     readprecincts();
     loadmap('council');
-    /* $('.button').tipsy({
-        gravity: 'w',
-        title: function() {
-            return 'Hi there!';
-        }
-    });
-    $('g').tipsy({
-        gravity: 'w',
-        html: true,
-        title: function() {
-            return 'Hi there!';
-        }
-    });
-    $('.O').tipsy({
-        gravity: 'w',
-        html: true,
-        title: function() {
-            return 'Hi there!';
-        }
-    });
-    $('.T').tipsy({
-        gravity: 'w',
-        html: true,
-        title: function() {
-            return 'Hi there!';
-        }
-    });
-    $('.button').simpletip({
-        // Configuration properties
-        content: 'My Simpletip',
-        fixed: false
-    });
-    $('.precinct').simpletip({
-        // Configuration properties
-        content: 'My Simpletip',
-        fixed: false
-    });
 
-    /*$('.precinct').tipsy({
-        gravity: 'w',
-        title: function() {
-            alert('here');
-            return 'Hi there!';
-        }
-    });*/
+
     sizebuttons();
     getLastUpdate();
-    $(".precinct").mouseover(function() {
-        alert("mouseover!");
-    });
 };
 
 $(document).ready(function() {
+    mouseactive = true;
     $(document).ready(function() {
         setInterval(function() {
             var selected = $('.selected')[0].id.split("-")[0];
@@ -195,6 +151,17 @@ $(document).ready(function() {
             getLastUpdate();
         }, 120000);
     });
+    var timer;
+    var timeout = function() {
+        $('rect').hide();
+        //alert('No movement!');
+    };
+    timer = setTimeout(timeout, 500);
+    window.onmousemove = function() {
+        $('rect').show();
+        clearTimeout(timer);
+        timer = setTimeout(timeout, 500);
+    };
 });
 ;function addCommas(nStr) {
     nStr += '';
@@ -210,22 +177,30 @@ $(document).ready(function() {
 
 function sizebuttons() {
     var width = $(window).width();
-    if ((width) < 650) {
-        $('.button_title').css("font-size", ".01em");
-        $('.button_title').css("font-weight", "normal");
-        $('.button').css("margin-left", "0px");
-        $('.button').css("margin-right", "0px");
-        $('.button').css("font-size", ".75em");
-        $('.button').css("width", "15%");
-        $('#buttons').css("height", "25%");
-    } else {
+    if ((width) < 400) {
         $('.button_title').css("font-size", "1em");
         $('.button_title').css("font-weight", "normal");
         $('.button').css("margin-left", "1.5%");
         $('.button').css("margin-right", "1.5%");
         $('.button').css("font-size", ".75em");
         $('.button').css("width", "13%");
-        $('#buttons').css("height", "10%");
+        $('#buttons').css("height", "45%");
+    } else if ((width) < 650) {
+        $('.button_title').css("font-size", ".01em");
+        $('.button_title').css("font-weight", "normal");
+        $('.button').css("margin-left", "0px");
+        $('.button').css("margin-right", "0px");
+        $('.button').css("font-size", ".75em");
+        $('.button').css("width", "17%");
+        $('#buttons').css("height", "30%");
+    } else {
+        $('.button_title').css("font-size", ".01em");
+        $('.button_title').css("font-weight", "normal");
+        $('.button').css("margin-left", "0px");
+        $('.button').css("margin-right", "0px");
+        $('.button').css("font-size", ".75em");
+        $('.button').css("width", "17%");
+        $('#buttons').css("height", "20%");
     }
 }
 
@@ -240,7 +215,7 @@ function getLastUpdate() {
     var now = new Date();
     //now = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
     $("#lastupdate").html("Last update: " +
-        now.toLocaleTimeString() + "<br> Page automatically refreshes every 2 minutes");
+        now.toLocaleTimeString() + " | page automatically refreshes every 2 minutes.");
 }
 
 function formatTimeOfDay(millisSinceEpoch) {
@@ -287,8 +262,8 @@ function readprecincts() {
         }).await(ready);
 
     function ready(error, us) {
-        var total_c = totals['47479'];
-        var total_city = totals['47474'];
+        var total_c = totals['50209'];
+        var total_city = totals['50211'];
         $('#pctreporting-citywide').html(total_c + ' of 65 precincts reporting');
         $('.pctreporting').html(total_city + ' of 366 precincts reporting');
     }
@@ -313,6 +288,9 @@ function readtotals() {
 }
 
 function loadmap(file) {
+    var votesone = d3.map();
+    var votestwo = d3.map();
+    var visible = "auto";
 
     $("#map").html('');
 
@@ -322,14 +300,13 @@ function loadmap(file) {
         height = $("#mapwrapper").height();
 
     var wards = d3.map();
-    var votesone = d3.map();
-    var votestwo = d3.map();
 
     var svg = d3.select("#map").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("pointer-events", visible);
 
-    var projection = d3.geo.mercator().translate([width / 2, height / 2]).scale(width * 100).center([-89.90, 29.95]);
+    var projection = d3.geo.mercator().translate([width / 2, height / 2]).scale(((width / 2) + (height / 2)) * 100).center([-89.97, 29.8]);
 
     var path = d3.geo.path().projection(projection);
 
@@ -349,10 +326,11 @@ function loadmap(file) {
             .scaleExtent([1, 8])
             .on("zoom", zoomed);
 
-        var features = svg.append("g");
+        var features = svg.append("g").attr("pointer-events", visible);
 
         features.append("g")
             .attr("class", "precincts")
+            .attr("pointer-events", visible)
             .selectAll("path")
             .data(topojson.feature(us, us.objects.orleansgeojson).features)
             .enter().append("path")
@@ -366,17 +344,27 @@ function loadmap(file) {
             return d.id;
         })
             .attr("d", path)
-            .append("title").text(Math.floor(Math.random() * 11));
+            .attr("title", function(d) {
+                return votesone.get(d.id) + "-" + votestwo.get(d.id);
+            });
+        /*            .append("title")
+            .text(function(d) {
+                return votesone.get(d.id) + "-" + votestwo.get(d.id);
+            }); */
 
         features.append("g")
             .attr("class", "coastlines")
+            .attr("pointer-events", visible)
             .selectAll("path")
             .data(topojson.feature(us, us.objects.coastlines).features)
             .enter().append("path")
-            .attr("d", path);
+            .attr("pointer-events", visible)
+            .attr("d", path)
+            .attr("pointer-events", visible);
 
         svg.append("rect")
             .attr("class", "overlay")
+            .attr("pointer-events", visible)
             .attr("width", width)
             .attr("height", height)
             .call(zoom);
@@ -385,6 +373,23 @@ function loadmap(file) {
             features.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
             features.select(".precinct").style("stroke-width", 1.5 / d3.event.scale + "px");
         }
+
+
+
+        $('path').tipsy({
+            gravity: 'w',
+            html: true,
+            title: function() {
+                var ward = "Ward: " + this.id.split("-")[0] + "\n";
+                var precinct = "Precinct: " + this.id.split("-")[1] + "\n";
+                var v1 = votesone.get(this.id);
+                var v2 = votestwo.get(this.id);
+                var c1 = $(".selected").find(".votesone").html() + ": ";
+                var c2 = $(".selected").find(".votestwo").html() + ": ";
+                return ward + "<br>" + precinct + "<br>" + c1 + v1 + "<br>" + c2 + v2;
+            }
+        });
+        $('rect').hide();
 
     }
 
