@@ -41,6 +41,7 @@ var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
+
 d3.json("precincts2.json", function(collection) {
   var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform);
@@ -68,11 +69,21 @@ d3.json("precincts2.json", function(collection) {
     feature.attr("d", path);
   }
 
+    var imgs = svg.selectAll("img").data([0]);
+        imgs.enter()
+            .append("svg:image")
+            .attr("xlink:href", "TheLens.svg")
+            .attr("x", svg.attr("width") * (4 / 10))
+            .attr("y", svg .attr("height") * (7 / 10))
+            .attr("width", "125")
+            .attr("height", "125");
+
   // Use Leaflet to implement a D3 geometric transformation.
   function projectPoint(x, y) {
     var point = map.latLngToLayerPoint(new L.LatLng(y, x));
     this.stream.point(point.x, point.y);
   }
 });
+
 
 </script>
