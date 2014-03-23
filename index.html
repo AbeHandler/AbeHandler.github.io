@@ -37,7 +37,7 @@ path:hover {
 
 var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
     .addLayer(new L.tileLayer('http://129.206.74.245:8008/tms_rg.ashx?x={x}&y={y}&z={z}', {
-  attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+  attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> | With <a href="http://d3js.org"> d3.js </a>'
 }));
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
@@ -69,9 +69,7 @@ d3.json("precincts2.json", function(collection) {
     g   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 
     feature.attr("d", path);
-  }
-
-    var imgs = svg.selectAll("img").data([0]);
+        var imgs = svg.selectAll("img").data([0]);
         imgs.enter()
             .append("svg:image")
             .attr("xlink:href", "TheLens.svg")
@@ -79,6 +77,9 @@ d3.json("precincts2.json", function(collection) {
             .attr("y", svg .attr("height") * (7.7 / 10))
             .attr("width", "125")
             .attr("height", "125");
+  }
+
+
 
   // Use Leaflet to implement a D3 geometric transformation.
   function projectPoint(x, y) {
