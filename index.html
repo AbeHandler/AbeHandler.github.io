@@ -36,7 +36,9 @@ path:hover {
 <script>
 
 var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
-    .addLayer(new L.TileLayer("http://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png"));
+    .addLayer(new L.tileLayer('http://129.206.74.245:8008/tms_rg.ashx?x={x}&y={y}&z={z}', {
+  attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+}));
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     g = svg.append("g").attr("class", "leaflet-zoom-hide");
@@ -73,8 +75,8 @@ d3.json("precincts2.json", function(collection) {
         imgs.enter()
             .append("svg:image")
             .attr("xlink:href", "TheLens.svg")
-            .attr("x", svg.attr("width") * (5.2 / 10))
-            .attr("y", svg .attr("height") * (8 / 10))
+            .attr("x", svg.attr("width") * (5.5 / 10))
+            .attr("y", svg .attr("height") * (7.7 / 10))
             .attr("width", "125")
             .attr("height", "125");
 
