@@ -28,12 +28,29 @@ path:hover {
 }
 
 </style>
-
+ <style type="text/css">
+  .ui-slider-horizontal .ui-state-default {background: white url(http://stackoverflow.com/content/img/so/vote-arrow-down.png) no-repeat scroll 50% 50%;}
+  </style>
 <p id="map">
+<div id="slider"></div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script>
 <script>
+
+  $(function() {
+    $( "#slider" ).slider({
+      slide: function( event, ui ) {
+        console.log(ui.value)
+      }
+    });
+  });
 
 var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
     .addLayer(new L.tileLayer('http://129.206.74.245:8008/tms_rg.ashx?x={x}&y={y}&z={z}', {
@@ -50,7 +67,11 @@ d3.json("precincts2.json", function(collection) {
 
   var feature = g.selectAll("path")
       .data(collection.features)
-    .enter().append("path");
+    .enter().append("path").attr("id", function(d) {
+                return d.id;
+            }).attr("class", function(d){
+                return "R";
+            });
 
   map.on("viewreset", reset);
   reset();
