@@ -70,7 +70,13 @@ d3.json("precincts2.json", function(collection) {
     .enter().append("path").attr("id", function(d) {
                 return d.id;
             }).attr("class", function(d){
-                return "R";
+                var randomnumber=Math.floor(Math.random()*11)
+                if(randomnumber<6){
+                  return "O";
+                }else{
+                  return "T";
+                }
+                
             });
 
   map.on("viewreset", reset);
