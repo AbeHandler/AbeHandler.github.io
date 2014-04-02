@@ -24,8 +24,8 @@ svg {
 }
 
 path {
-  fill: #000;
-  fill-opacity: .2;
+  fill: #F10BF1;
+  fill-opacity: .9;
   stroke: #fff;
   stroke-width: 1.5px;
 }
@@ -54,13 +54,13 @@ var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
   attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 }));
 
-var svg = d3.select(map.getPanes().overlayPane).append("svg"),
-    g = svg.append("g");
-
-
+  var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+      g = svg.append("g").attr("class", "leaflet-zoom-hide");
+ 
+  
 d3.json("testing2.json", function(collection) {
   var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return 10});
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return d.properties.count/50});
 console.warn(path)
  
   var feature = g.selectAll("path")
@@ -93,7 +93,7 @@ console.warn(path)
   }
  
   
-  });     
+  });
 
 
 </script>
