@@ -50,17 +50,17 @@ path:hover {
 <script>
 
 var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
-    .addLayer(new L.tileLayer('http://129.206.74.245:8008/tms_rg.ashx?x={x}&y={y}&z={z}', {
-  attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> | With <a href="http://d3js.org"> d3.js </a>'
+    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 }));
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg"),
     g = svg.append("g");
 
 
-d3.json("testing.json", function(collection) {
+d3.json("testing2.json", function(collection) {
   var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return d.properties.count/50});
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return 10});
 console.warn(path)
  
   var feature = g.selectAll("path")
