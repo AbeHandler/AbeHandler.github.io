@@ -26,7 +26,7 @@ svg {
 path {
   fill: #F10BF1;
   fill-opacity: .9;
-  stroke: #fff;
+  stroke: #F10BF1;
   stroke-width: 1.5px;
 }
 
@@ -60,7 +60,7 @@ var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
   
 d3.json("testing2.json", function(collection) {
   var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return d.properties.count/50});
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return 5});
 console.warn(path)
  
   var feature = g.selectAll("path")
