@@ -7,20 +7,16 @@
 @import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css);
 
 #map {
-  width: 960px;
-  height: 500px;
+  height: 900px;
+}
+
+body , html{ 
+  height: 100%;
+  width: 100%;
 }
 
 svg {
   position: relative;
-}
-
-.O{
-  fill:blue;
-}
-
-.T{
-  fill:red;
 }
 
 path {
@@ -35,9 +31,73 @@ path:hover {
   fill-opacity: .7;
 }
 
+#mapholder{
+  float:left;
+  width:100%;
+  position: relative;
+}
+
+#blightbuttons{
+  float:left;
+  width:60%;
+}
+#lensbutton{
+  float:right;
+  width: 15%;
+}
+#picture{
+    width: 30%;
+    height: 70%;
+    margin: 0;
+    padding: 0;
+    background: #EEE url(house.jpg) 0 0 fixed;
+    background-size: cover;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 6;
+    position: absolute;
+}
+
 </style>
 
+<div id="mapholder">
+<div id="picture">
+ <!-- <img src="house.jpg"> -->
+</div>
 <p id="map">
+</div>
+
+
+<div id="buttons">
+<div id="blightbuttons"> 
+<form>
+  <fieldset>
+    <legend>Type of blight elimination</legend>
+    <div id="radio">
+
+      <input type="checkbox" id="sheriff" name="project">
+      <label for="sheriff">Sheriff Sale</label>
+ 
+      <input type="checkbox" id="nora" name="project" checked="checked">
+      <label for="nora">NORA Sale</label>
+ 
+      <input type="checkbox" id="demolition" name="project">
+      <label for="demolition">Demolition</label>
+
+      <input type="checkbox" id="compliance" name="project">
+      <label for="compliance">Compliance</label>
+
+    </div>
+  </fieldset>
+</form>
+</div>
+
+<div id="lensbutton">
+ <button>Lens Investigated</button>
+</div>
+
+</div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   
@@ -49,7 +109,16 @@ path:hover {
 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script>
 <script>
 
-var map = new L.Map("map", {center: [29.97, -89.98], zoom: 12})
+  $(function() {
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+
+$( "#radio" ).buttonset();
+var map = new L.Map("map", {center: [29.97, -89.98], zoom: 14})
     .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 }));
