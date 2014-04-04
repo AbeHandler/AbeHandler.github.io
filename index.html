@@ -33,7 +33,7 @@ path {
   fill: #F10BF1;
   fill-opacity: .9;
   stroke: #F10BF1;
-  stroke-width: 1.5px;
+  stroke-width: .75px;
 }
 
 path:hover {
@@ -110,16 +110,16 @@ float: left;
     <div id="radio">
 
       <input type="checkbox" id="sheriff" name="project">
-      <label for="sheriff">Sheriff Sale</label>
+      <label for="sheriff">Sheriff Sold</label>
  
       <input type="checkbox" id="nora" name="project" checked="checked">
-      <label for="nora">NORA Sale</label>
+      <label for="nora">NORA Sold</label>
  
       <input type="checkbox" id="demolition" name="project">
-      <label for="demolition">Demolition</label>
+      <label for="demolition">Demolished</label>
 
       <input type="checkbox" id="compliance" name="project">
-      <label for="compliance">Fixes</label>
+      <label for="compliance">Repaired</label>
 
       <input type="checkbox" id="lens" name="project">
       <label for="lens">Lens Investigated</label>
@@ -203,14 +203,16 @@ var map = new L.Map("map", {center: [29.95, -90.1], zoom: 14})
       g = svg.append("g").attr("class", "leaflet-zoom-hide");
  
   
-d3.json("testing2.json", function(collection) {
+d3.json("out.json", function(collection) {
   var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return 5});
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return 1});
 console.warn(path)
  
   var feature = g.selectAll("path")
       .data(collection.features)
-    .enter().append("path");
+    .enter().append("path").attr("category", function(d){
+      return d.properties.category;
+    });
  
   map.on("viewreset", reset);
   reset();
