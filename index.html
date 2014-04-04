@@ -7,7 +7,7 @@
 @import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css);
 
 #map {
-  height: 900px;
+  height: 800px;
 }
 
 body , html{ 
@@ -38,13 +38,16 @@ path:hover {
 #mapholder{
   float:left;
   width:100%;
+  max-width: 800px;
   position: relative;
 }
 
-#blightbuttons{
-  float:left;
-  width:60%;
+#blightbuttons {
+text-align: center;
+margin-left: auto;
+margin-right: auto;
 }
+
 #lensbutton{
   float:right;
   width: 15%;
@@ -74,8 +77,7 @@ padding:none;
 #buttons{
   z-index: 30;
   position: absolute;
-  bottom:0;
-  width: 90%;
+  top:40px;
 }
 </style>
 
@@ -86,7 +88,7 @@ padding:none;
 <div id="blightbuttons"> 
 <form>
   <fieldset>
-    <legend>Type of blight elimination</legend>
+    <legend>Blight Elimination: Official Numbers and Lens Investigation</legend>
     <div id="radio">
 
       <input type="checkbox" id="sheriff" name="project">
@@ -99,15 +101,14 @@ padding:none;
       <label for="demolition">Demolition</label>
 
       <input type="checkbox" id="compliance" name="project">
-      <label for="compliance">Compliance</label>
+      <label for="compliance">Fixes</label>
+
+      <input type="checkbox" id="lens" name="project">
+      <label for="lens">Lens Investigated</label>
 
     </div>
   </fieldset>
 </form>
-</div>
-
-<div id="lensbutton">
- <button>Lens Investigated</button>
 </div>
 
 </div>
