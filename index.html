@@ -19,6 +19,10 @@ svg {
   position: relative;
 }
 
+.leaflet-container .leaflet-control-scale {
+font-size: 8px;
+}
+
 path {
   fill: #F10BF1;
   fill-opacity: .9;
@@ -58,19 +62,26 @@ path:hover {
     z-index: 6;
     position: absolute;
 }
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+   background: none;
+}
+
+.ui-button-text-only .ui-button-text {
+padding:none;
+}
+
 #buttons{
   z-index: 30;
   position: absolute;
   bottom:0;
+  width: 90%;
 }
 </style>
 
 <div id="mapholder">
-  
+
 <p id="map">
-</div>
-
-
 <div id="buttons">
 <div id="blightbuttons"> 
 <form>
@@ -99,6 +110,7 @@ path:hover {
  <button>Lens Investigated</button>
 </div>
 
+</div>
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
