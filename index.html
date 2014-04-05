@@ -31,7 +31,7 @@ font-size: 8px;
 
 path {
   fill-opacity: .9;
-  stroke-width: 4px;
+  stroke-width: 6px;
 }
 
 path:hover {
@@ -67,6 +67,13 @@ right: -85px;
   stroke:green;
 }
 
+.t {
+stroke: black;
+stroke-width: 14px;
+stroke-opacity: 1;
+cursor:default;
+}
+
 .nora{
   fill:orange;
   stroke:orange;
@@ -80,6 +87,11 @@ right: -85px;
 .sheriff{
   fill:purple;
   stroke:purple;
+}
+
+.investigates{
+  stroke:black;
+  stroke-width:10px;
 }
 
 #lensbutton{
@@ -273,13 +285,13 @@ var map = new L.Map("map", {center: [29.95, -90.1], zoom: 14})
   
 d3.json("out.json", function(collection) {
   var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return 1});
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return 4});
 console.warn(path)
  
   var feature = g.selectAll("path")
       .data(collection.features)
     .enter().append("path").attr("class", function(d){
-      return d.properties.category;
+      return d.properties.category + " " + d.properties.investigates;
     });
  
   map.on("viewreset", reset);
