@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="ocks-org do-not-copy">
+<html>
 <meta charset="utf-8">
     <head>
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
@@ -8,6 +8,9 @@
     <script src="js/modernizr.custom.17475.js"></script>
     </head>
 <title>D3 + Leaflet</title>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  
 <style>
 
 @import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css);
@@ -62,36 +65,49 @@ margin-right: auto;
 right: -85px;
 }
 
-.demo{
-  fill:green;
-  stroke:green;
-}
-
 .t {
-stroke: black;
+stroke:black !important;
 stroke-width: 14px;
 stroke-opacity: 1;
+z-index: 10000;
+position: absolute;
 cursor:default;
 }
 
+.demo{
+  fill:#df65b0;
+  stroke:#df65b0;
+}
+
 .nora{
-  fill:orange;
-  stroke:orange;
+  fill:#d4b9da;
+  stroke:#d4b9da;
 }
 
 .fixed{
-  fill:red;
-  stroke:red;
+  fill:#ce1256;
+  stroke:#ce1256;
 }
 
 .sheriff{
-  fill:purple;
-  stroke:purple;
+  fill:#67001f;
+  stroke:#67001f;
 }
 
-.investigates{
-  stroke:black;
-  stroke-width:10px;
+#sheriff_label{
+  background-color: #67001f;
+}
+
+#fixed_label{
+  background-color: #ce1256;
+}
+
+#nora_label{
+  background-color: #d4b9da;
+}
+
+#demo_label{
+  background-color: #df65b0;
 }
 
 #lensbutton{
@@ -133,8 +149,39 @@ float: left;
 }
 </style>
 
-<div id="mapholder">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquerypp.custom.js"></script>
+    <script type="text/javascript" src="js/jquery.elastislide.js"></script>
+    <script type="text/javascript">  
+      $(function() {
+        $("#dialog").dialog({
+          autoOpen: false,
+          resizable: false,
+          width: "auto"
+        });
+      });
+      $(".t").on("click", function(e) {
+        alert("you clicked");
+        e.preventDefault();
+        $("#dialog").html("<img src='" + $(this).prop("href") + "' width='" + $(this).attr("data-width") + "' height='" + $(this).attr("data-height") + "'>");
+        $("#dialog").dialog("option", "position", {
+          my: "center",
+          at: "center",
+          of: window
+        });
+        if ($("#dialog").dialog("isOpen") == false) {
+          $("#dialog").dialog("open");
+        }
+      });    
+      $( '#carousel' ).elastislide( {
+        minItems : 2
+      } );
 
+    </script>
+
+
+<div id="mapholder">
+<div id="dialog" title="Dialog">content</div>
 <p id="map">
 <div id="buttons">
 <div id="blightbuttons"> 
@@ -144,17 +191,17 @@ float: left;
     <div id="radio">
 
       <input type="checkbox" id="sheriff" name="project" checked="checked">
-      <label for="sheriff">Sheriff Sold</label>
- 
-      <input type="checkbox" id="nora" name="project" checked="checked">
-      <label for="nora">NORA Sold</label>
- 
-      <input type="checkbox" id="demolition" name="project" checked="checked">
-      <label for="demolition">Demolished</label>
+      <label for="sheriff" id="sheriff_label" >Sheriff Sold</label>
 
       <input type="checkbox" id="compliance" name="project" checked="checked">
-      <label for="compliance">Repaired</label>
+      <label for="compliance" id="fixed_label" >Repaired</label>
+ 
+      <input type="checkbox" id="demolition" name="project" checked="checked">
+      <label for="demolition" id="demo_label" >Demolished</label>
 
+      <input type="checkbox" id="nora" name="project" checked="checked">
+      <label for="nora" id="nora_label" >NORA Sold</label>
+ 
     </div>
   </fieldset>
 </form>
@@ -192,18 +239,6 @@ float: left;
 </div>
 </div>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquerypp.custom.js"></script>
-    <script type="text/javascript" src="js/jquery.elastislide.js"></script>
-    <script type="text/javascript">      
-      $( '#carousel' ).elastislide( {
-        minItems : 2
-      } );
-      
-    </script>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  
 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
