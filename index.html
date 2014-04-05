@@ -30,10 +30,8 @@ font-size: 8px;
 }
 
 path {
-  fill: #F10BF1;
   fill-opacity: .9;
-  stroke: #F10BF1;
-  stroke-width: .75px;
+  stroke-width: 4px;
 }
 
 path:hover {
@@ -58,6 +56,26 @@ margin-right: auto;
   z-index: 50;
   position: absolute;
   bottom: 45px;
+}
+
+.demo{
+  fill:green;
+  stroke:green;
+}
+
+.nora{
+  fill:orange;
+  stroke:orange;
+}
+
+.fixed{
+  fill:red;
+  stroke:red;
+}
+
+.sheriff{
+  fill:purple;
+  stroke:purple;
 }
 
 #lensbutton{
@@ -181,6 +199,55 @@ float: left;
 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script>
 <script>
 
+var demo = true;
+var fixed = true;
+var sheriff = true;
+var nora = true;
+
+$( "#demolition" ).click(function() {
+  if (demo){
+    $( ".demo").css("visibility", "hidden");
+    demo = false;
+  } else{
+    demo=true;
+    $( ".demo").css("visibility", "visible");
+  }
+});
+
+$( "#compliance" ).click(function() {
+    if (fixed){
+    $( ".fixed").css("visibility", "hidden");
+    fixed = false;
+  } else{
+    fixed=true;
+    $( ".fixed").css("visibility", "visible");
+  }
+
+});
+
+$( "#sheriff" ).click(function() {
+  if (sheriff){
+    $( ".sheriff").css("visibility", "hidden");
+    sheriff = false;
+  } else{
+    sheriff=true;
+    $( ".sheriff").css("visibility", "visible");
+  }
+
+});
+
+$( "#nora" ).click(function() {
+     if (nora){
+    $( ".nora").css("visibility", "hidden");
+    nora = false;
+  } else{
+    nora=true;
+    $( ".nora").css("visibility", "visible");
+  }
+
+});
+
+
 $("#switch").click(function() {
   $( "#toggle" ).toggle( "slide" );
 });
@@ -210,7 +277,7 @@ console.warn(path)
  
   var feature = g.selectAll("path")
       .data(collection.features)
-    .enter().append("path").attr("category", function(d){
+    .enter().append("path").attr("class", function(d){
       return d.properties.category;
     });
  
