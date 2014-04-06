@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+  <!-- <link rel="stylesheet" href={{ url_for('static', filename='css/reset.css') }} type="text/css" media="screen" charset="utf-8">
+  <script src='{{ url_for('static', filename='vendor/jquery-1.11.0.js') }}' type="text/javascript" charset="utf-8"></script>
+  !-->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/demo.css') }}' />
+    <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/elastislide.css') }}'/>
+    <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/custom.css') }}' />
+
+<style>
+
+@import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css);
+
+#map {
+  height: 700px;
+}
+
+body , html{ 
+  height: 100%;
+  width: 100%;
+}
+
+svg {
+  position: relative;
+}
+
+.leaflet-container .leaflet-control-scale {
+font-size: 8px;
+}
+
+path {
+  fill-opacity: .5;
+  stroke-width: 6px;
+  stroke-opacity: .6;
+}
+
+path:hover {
+  fill: brown;
+  fill-opacity: .7;
+}
+
+#mapholder{
+  float:left;
+  width:100%;
+  max-width: 800px;
+  position: relative;
+}
+
+#blightbuttons {
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+}
+
+#photopane{
+z-index: 50;
+position: absolute;
+bottom: 25px;
+width: 110%;
+margin-left: auto;
+margin-right: auto;
+right: -85px;
+}
+
+.t {
+stroke:black !important;
+stroke-width: 14px;
+stroke-opacity: 1;
+z-index: 10000;
+position: absolute;
+cursor:default;
+}
+
+.demo{
+  fill:#df65b0;
+  stroke:#df65b0;
+}
+
+.nora{
+  fill:#d4b9da;
+  stroke:#d4b9da;
+}
+
+.fixed{
+  fill:#ce1256;
+  stroke:#ce1256;
+}
+
+.sheriff{
+  fill:#67001f;
+  stroke:#67001f;
+}
+
+#sheriff_label{
+  background-color: #67001f;
+}
+
+#fixed_label{
+  background-color: #ce1256;
+}
+
+#nora_label{
+  background-color: #d4b9da;
+}
+
+#demo_label{
+  background-color: #df65b0;
+}
+
+#lensbutton{
+  float:right;
+  width: 15%;
+}
+#picture{
+    width: 30%;
+    height: 70%;
+    margin: 0;
+    padding: 0;
+    background: #EEE url(house.jpg) 0 0 fixed;
+    background-size: cover;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 6;
+    position: absolute;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+   background: none;
+}
+
+.ui-button-text-only .ui-button-text {
+padding:none;
+}
+
+#buttons{
+  z-index: 30;
+  position: absolute;
+  top:5px;
+  right:0px;
+}
+
+.elastislide-wrapper{
+  width: 90%;
+float: left;
+}
+</style>
+</head>
+
+<body>
+
+<div id="dialog" title="Dialog"></div>
+
+<div id="mapholder">
+<p id="map">
+<div id="buttons">
+<div id="blightbuttons"> 
+<form>
+  <fieldset>
+    <legend>Blight Elimination: Official Numbers and Lens Investigation</legend>
+    <div id="radio">
+
+      <input type="checkbox" id="sheriff" name="project" checked="checked">
+      <label for="sheriff" id="sheriff_label" >Sheriff Sold</label>
+
+      <input type="checkbox" id="compliance" name="project" checked="checked">
+      <label for="compliance" id="fixed_label" >Repaired</label>
+ 
+      <input type="checkbox" id="demolition" name="project" checked="checked">
+      <label for="demolition" id="demo_label" >Demolished</label>
+
+      <input type="checkbox" id="nora" name="project" checked="checked">
+      <label for="nora" id="nora_label" >NORA Sold</label>
+ 
+    </div>
+  </fieldset>
+</form>
+</div>
+
+</div>
+<div id="photopane">
+<p id="switch">click
+<div id="toggle">
+  
+          <ul id="carousel" class="elastislide-list">
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/1.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/2.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/3.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/9.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' alt="image01" /></a></li>
+          </ul>
+
+</div>
+</div>
+</div>
+
+    <script type="text/javascript" src='{{ url_for('static', filename='js/modernizr.custom.17475.js') }}'></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src='{{ url_for('static', filename='js/jquerypp.custom.js') }}'></script>
+    <script type="text/javascript" src='{{ url_for('static', filename='js/jquery.elastislide.js') }}'></script>
+    <script type="text/javascript">  
+      $(function() {
+        $("#dialog").dialog({
+          autoOpen: false,
+          resizable: false,
+          width: "auto"
+        });
+      }); 
+      $( '#carousel' ).elastislide( {
+        minItems : 2
+      } );
+      $(".t").on("click", function(e) {
+    alert("you clicked");
+  });
+
+    </script>
+
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script>
+<script>
+
+var demo = true;
+var fixed = true;
+var sheriff = true;
+var nora = true;
+
+$( "#demolition" ).click(function() {
+  if (demo){
+    $( ".demo").css("visibility", "hidden");
+    demo = false;
+  } else{
+    demo=true;
+    $( ".demo").css("visibility", "visible");
+  }
+});
+
+$( "#compliance" ).click(function() {
+    if (fixed){
+    $( ".fixed").css("visibility", "hidden");
+    fixed = false;
+  } else{
+    fixed=true;
+    $( ".fixed").css("visibility", "visible");
+  }
+
+});
+
+$( "#sheriff" ).click(function() {
+  if (sheriff){
+    $( ".sheriff").css("visibility", "hidden");
+    sheriff = false;
+  } else{
+    sheriff=true;
+    $( ".sheriff").css("visibility", "visible");
+  }
+
+});
+
+$( "#nora" ).click(function() {
+     if (nora){
+    $( ".nora").css("visibility", "hidden");
+    nora = false;
+  } else{
+    nora=true;
+    $( ".nora").css("visibility", "visible");
+  }
+
+});
+
+
+$("#switch").click(function() {
+  $( "#toggle" ).toggle( "slide" );
+});
+
+  $(function() {
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+
+$( "#radio" ).buttonset();
+var map = new L.Map("map", {center: [29.95, -90.1], zoom: 14})
+    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+}));
+
+  var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+      g = svg.append("g").attr("class", "leaflet-zoom-hide");
+ 
+  
+d3.json('{{url_for('static', filename='out.json') }}', function(collection) {
+  var bounds = d3.geo.bounds(collection),
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return 4});
+console.warn(path)
+ 
+  var feature = g.selectAll("path")
+      .data(collection.features)
+    .enter().append("path").attr("class", function(d){
+      return d.properties.category + " " + d.properties.investigates;
+    });
+        $(".t").on("click", function(e) {
+        $("#dialog").dialog("option", "position", {
+          my: "center",
+          at: "center",
+          of: window
+        });
+        if ($("#dialog").dialog("isOpen") == false) {
+          $("#dialog").dialog("open");
+        }
+  });
+
+  map.on("viewreset", reset);
+  reset();
+ 
+  // Reposition the SVG to cover the features.
+  function reset() {
+    console.warn(bounds)
+    var bottomLeft = project(bounds[0]),
+        topRight = project(bounds[1]);
+ 
+    svg .attr("width", topRight[0] - bottomLeft[0])
+        .attr("height", bottomLeft[1] - topRight[1])
+        .style("margin-left", bottomLeft[0] + "px")
+        .style("margin-top", topRight[1] + "px").attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+ 
+     g .attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+ 
+    feature.attr("d", path)
+  }
+ 
+  // Use Leaflet to implement a D3 geographic projection.
+  function project(x) {
+    var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+    return [point.x, point.y];
+  }
+ 
+  
+  });
+
+
+</script>
+
+</body>
+
+
