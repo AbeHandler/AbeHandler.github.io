@@ -13,6 +13,7 @@ for x in range(0, 7500):
 	feature["type"] = "Feature"
 	geom["type"] = "Point"
 	geom["coordinates"] = [random.uniform(-89.9, -90.12),random.uniform(29.9, 30.05)]
+	geom["address"] = "123_Maple_St."
 	feature["geometry"] = geom
 	feature["properties"] = dict(category=types[randint(0,3)],investigates=investigates[randint(0,5)])
 	featuredict.append(feature)
