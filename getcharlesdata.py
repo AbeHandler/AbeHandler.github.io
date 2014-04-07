@@ -1,20 +1,21 @@
 import csv
+import os
 from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
 
-#gauth = GoogleAuth()
-#gauth.LocalWebserverAuth()
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
 
-#drive = GoogleDrive(gauth)
+drive = GoogleDrive(gauth)
 
-
-with open('VisitingPhotos.csv', 'rb') as csvfile:
+with open('VisitingPhotos.csv', 'rU') as csvfile:
 	for row in csv.reader(csvfile, delimiter=','):
-		for cell in row:
-			print cell
-
-#myfile = drive.CreateFile({'id': '0BzEokBVWKbcVQy01dW5nQ0tJN28'}) 
-#myfile2 = drive.CreateFile({'id': '0BzEokBVWKbcVczZJUFIwX1kxbG8'}) 
-#print myfile['title']  # world.png
-#print myfile2['title']  # world.png
-#myfile.GetContentFile('world.png')
+		try:
+			address = row[2].replace(' ', '_')
+			links = [i for i in row[3].split(" ") if len(i)>0] 
+			for l in links:
+				myfile = drive.CreateFile({'id': l.split("=")[2]})
+				if not os.path.exists('static/images/big/' + address + "_" + l.split("=")[2]):
+					myfile.GetContentFile('static/images/big/' + address + "_" + l.split("=")[2])
+		except:
+			print row
