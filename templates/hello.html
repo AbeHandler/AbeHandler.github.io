@@ -187,7 +187,7 @@ float: left;
 <div id="toggle">
   
           <ul id="carousel" class="elastislide-list">
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/1.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="123_Octavia_St"><img src='{{ url_for('static', filename='images/123_Octavia_St.jpg') }}'/></a></li>
             <li><a href="#"><img src='{{ url_for('static', filename='images/small/2.jpg') }}' alt="image01" /></a></li>
             <li><a href="#"><img src='{{ url_for('static', filename='images/small/3.jpg') }}' alt="image01" /></a></li>
             <li><a href="#"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
@@ -236,6 +236,26 @@ var demo = true;
 var fixed = true;
 var sheriff = true;
 var nora = true;
+
+
+ $(".thumbnail").on("click", function(e) {
+  
+      var pth = this.pathname;
+      var mypicture = "pic" + pth;
+
+      $("#dialog").html('<img src="pic/myaddress">');
+
+        $("#dialog").dialog("option", "position", {
+          my: "center",
+          at: "center",
+          of: window
+        });
+        if ($("#dialog").dialog("isOpen") == false) {
+          $("#dialog").dialog("open");
+        }
+
+  });
+
 
 $( "#demolition" ).click(function() {
   if (demo){
@@ -311,7 +331,7 @@ console.warn(path)
   var feature = g.selectAll("path")
       .data(collection.features)
     .enter().append("path").attr("class", function(d){
-      return d.properties.category + " " + d.properties.investigates;
+      return d.abatement + " " + d.investigates;;
     });
         $(".t").on("click", function(e) {
         $("#dialog").dialog("option", "position", {
