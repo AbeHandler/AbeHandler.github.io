@@ -33,14 +33,14 @@ font-size: 8px;
 }
 
 path {
-  fill-opacity: .5;
-  stroke-width: 6px;
-  stroke-opacity: .6;
+  fill-opacity: 1;
+  stroke-width: .5px;
+  stroke-opacity: 1;
 }
 
 path:hover {
   fill: brown;
-  fill-opacity: .7;
+  fill-opacity: 1;
 }
 
 #mapholder{
@@ -68,7 +68,7 @@ right: -85px;
 
 .t {
 stroke:black !important;
-stroke-width: 14px;
+stroke-width: 3px;
 stroke-opacity: 1;
 z-index: 10000;
 position: absolute;
@@ -76,39 +76,39 @@ cursor:default;
 }
 
 .demo{
-  fill:#df65b0;
-  stroke:#df65b0;
+  fill:#b2df8a;
+  stroke:#b2df8a;
 }
 
 .nora{
-  fill:#d4b9da;
-  stroke:#d4b9da;
+  fill:#a6cee3;
+  stroke:#a6cee3;
 }
 
 .fixed{
-  fill:#ce1256;
-  stroke:#ce1256;
+  fill:#33a02c;
+  stroke:#33a02c;
 }
 
 .sheriff{
-  fill:#67001f;
-  stroke:#67001f;
+  fill:#1f78b4;
+  stroke:#1f78b4;
 }
 
 #sheriff_label{
-  background-color: #67001f;
+  background-color: #1f78b4;
 }
 
 #fixed_label{
-  background-color: #ce1256;
+  background-color: #33a02c;
 }
 
 #nora_label{
-  background-color: #d4b9da;
+  background-color: #a6cee3;
 }
 
 #demo_label{
-  background-color: #df65b0;
+  background-color: #b2df8a;
 }
 
 #lensbutton{
@@ -167,14 +167,14 @@ float: left;
       <input type="checkbox" id="sheriff" name="project" checked="checked">
       <label for="sheriff" id="sheriff_label" >Sheriff Sold</label>
 
+      <input type="checkbox" id="nora" name="project" checked="checked">
+      <label for="nora" id="nora_label" >NORA Sold</label>
+
       <input type="checkbox" id="compliance" name="project" checked="checked">
       <label for="compliance" id="fixed_label" >Repaired</label>
  
       <input type="checkbox" id="demolition" name="project" checked="checked">
       <label for="demolition" id="demo_label" >Demolished</label>
-
-      <input type="checkbox" id="nora" name="project" checked="checked">
-      <label for="nora" id="nora_label" >NORA Sold</label>
  
     </div>
   </fieldset>
@@ -325,13 +325,13 @@ var map = new L.Map("map", {center: [29.95, -90.1], zoom: 14})
   
 d3.json('{{url_for('static', filename='out.json') }}', function(collection) {
   var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return 4});
+      path = d3.geo.path().projection(project).pointRadius(function (d) {return 2});
 console.warn(path)
  
   var feature = g.selectAll("path")
       .data(collection.features)
     .enter().append("path").attr("class", function(d){
-      return d.abatement + " " + d.investigates;;
+      return d.properties.category + " " + d.properties.investigates;;
     });
         $(".t").on("click", function(e) {
         $("#dialog").dialog("option", "position", {

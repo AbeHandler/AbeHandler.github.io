@@ -23,13 +23,13 @@ demos = 'BlightStatus_Demolitions.csv'
 
 counter = 0
 
-def getFeature():
+def getFeature(lat, long, address):
 	feature = dict()
 	geom = dict()
 	feature["type"] = "Feature"
 	geom["type"] = "Point"
-	geom["coordinates"] = [random.uniform(-89.9, -90.12),random.uniform(29.9, 30.05)]
-	geom["address"] = "123_Maple_St."
+	geom["coordinates"] = [long,lat]
+	geom["address"] = address
 	feature["geometry"] = geom
 	feature["properties"] = dict(category=types[randint(0,3)],investigates=investigates[randint(0,5)])
 	return feature
@@ -65,11 +65,10 @@ with open('BlightStatus_Demolitions.csv', 'rU') as csvfile:
             feature = dict()
             geom = dict()
             geom['coordinates'] = [lat, long]
-            geom['address'] = address
             feature['geometry'] = geom
             feature['abatement'] = 'demo'
             feature['investigates'] = 'f'
-            featuredict.append(getFeature())
+            featuredict.append(getFeature(lat,long, address))
             counter+=1
         except:
             print(row)
@@ -86,11 +85,10 @@ with open('Compliance.csv', 'rU') as csvfile:
         feature = dict()
         geom = dict()
         geom['coordinates'] = [lat, long]
-        geom['address'] = address
         feature['geometry'] = geom
         feature['abatement'] = 'fixed'
         feature['investigates'] = 'f'
-        featuredict.append(getFeature())
+        featuredict.append(getFeature(lat,long, address))
         counter+=1
 
 with open('Nora.csv', 'rU') as csvfile:
@@ -105,30 +103,31 @@ with open('Nora.csv', 'rU') as csvfile:
             feature = dict()
             geom = dict()
             geom['coordinates'] = [lat, long]
-            geom['address'] = addres
             feature['geometry'] = geom
             feature['abatement'] = 'nora'
             feature['investigates'] = 'f'
-            featuredict.append(getFeature())
+            featuredict.append(getFeature(lat,long, addres))
             counter+=1
         except:
             print(row)
 
 with open('Sheriff.csv', 'rU') as csvfile:
     for row in csv.reader(csvfile, delimiter=','):
-        address = row[1]
-        lat = row[6]
-        long = row[7]
-    checkLatLong(lat, long, address, 'sheriff')
-    feature = dict()
-    geom = dict()
-    geom['coordinates'] = [lat, long]
-    geom['address'] = address
-    feature['geometry'] = geom
-    feature['abatement'] = 'sheriff'
-    feature['investigates'] = 'f'
-    featuredict.append(getFeature())
-    counter+=1
+        try:
+            address = row[1]
+            lat = row[6]
+            long = row[7]
+    	    checkLatLong(lat, long, address, 'sheriff')
+    	    feature = dict()
+    	    geom = dict()
+    	    geom['coordinates'] = [lat, long]
+    	    feature['geometry'] = geom
+    	    feature['abatement'] = 'sheriff'
+    	    feature['investigates'] = 'f'
+    	    featuredict.append(getFeature(lat,long, address))
+    	    counter+=1
+        except:
+            print(row)
 
 type = dict(type='FeatureCollection', features=featuredict)
 f = open('static/out.json', 'w')
