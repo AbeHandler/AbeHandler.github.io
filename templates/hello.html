@@ -158,6 +158,24 @@ float: left;
 <div id="mapholder">
 <p id="map">
 <div id="buttons">
+
+<div id="investigatebuttons"> 
+<form>
+  <fieldset>
+    <legend>Blight Elimination: Official Numbers and Lens Investigation</legend>
+    <div id="investigation_toggle">
+
+      <input type="radio" id="allblight_on" name="project" checked="checked">
+      <label for="allblight_on" id="allblight_on_label" >All properties</label>
+
+      <input type="radio" id="investigate_on" name="project" >
+      <label for="investigate_on" id="investigate_on_label" >Lens investigates</label>
+
+    </div>
+  </fieldset>
+</form>
+</div>
+
 <div id="blightbuttons"> 
 <form>
   <fieldset>
@@ -208,6 +226,17 @@ float: left;
     <script type="text/javascript" src='{{ url_for('static', filename='js/jquerypp.custom.js') }}'></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/jquery.elastislide.js') }}'></script>
     <script type="text/javascript">  
+      var all = true;
+      $("#investigatebuttons").change(function() {
+        if (all){
+          $( ".f").css("visibility", "hidden");
+          all=false;
+        } else{
+          $( ".f").css("visibility", "visible");
+          all=true;
+        }
+      });
+
       $(function() {
         $("#dialog").dialog({
           autoOpen: false,
@@ -218,9 +247,6 @@ float: left;
       $( '#carousel' ).elastislide( {
         minItems : 2
       } );
-      $(".t").on("click", function(e) {
-    alert("you clicked");
-  });
 
     </script>
 
@@ -256,51 +282,6 @@ var nora = true;
 
   });
 
-
-$( "#demolition" ).click(function() {
-  if (demo){
-    $( ".demo").css("visibility", "hidden");
-    demo = false;
-  } else{
-    demo=true;
-    $( ".demo").css("visibility", "visible");
-  }
-});
-
-$( "#compliance" ).click(function() {
-    if (fixed){
-    $( ".fixed").css("visibility", "hidden");
-    fixed = false;
-  } else{
-    fixed=true;
-    $( ".fixed").css("visibility", "visible");
-  }
-
-});
-
-$( "#sheriff" ).click(function() {
-  if (sheriff){
-    $( ".sheriff").css("visibility", "hidden");
-    sheriff = false;
-  } else{
-    sheriff=true;
-    $( ".sheriff").css("visibility", "visible");
-  }
-
-});
-
-$( "#nora" ).click(function() {
-     if (nora){
-    $( ".nora").css("visibility", "hidden");
-    nora = false;
-  } else{
-    nora=true;
-    $( ".nora").css("visibility", "visible");
-  }
-
-});
-
-
 $("#switch").click(function() {
   $( "#toggle" ).toggle( "slide" );
 });
@@ -314,7 +295,7 @@ $("#switch").click(function() {
   });
 
 $( "#radio" ).buttonset();
-var map = new L.Map("map", {center: [29.95, -90.1], zoom: 14})
+var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
     .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 }));
@@ -332,8 +313,13 @@ console.warn(path)
       .data(collection.features)
     .enter().append("path").attr("class", function(d){
       return d.properties.category + " " + d.properties.investigates;;
+    }).attr("id", function(d){
+      return d.geometry.address;
     });
         $(".t").on("click", function(e) {
+        
+        alert(this.id);
+
         $("#dialog").dialog("option", "position", {
           my: "center",
           at: "center",
