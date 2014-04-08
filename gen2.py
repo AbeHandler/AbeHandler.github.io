@@ -23,15 +23,21 @@ demos = 'BlightStatus_Demolitions.csv'
 
 counter = 0
 
+def getInvestigates(address):
+    dr = "static/images/big/" + address
+    if os.path.exists(dr):
+        return "t"
+    return "f"
+
 def getFeature(lat, long, address):
 	feature = dict()
 	geom = dict()
 	feature["type"] = "Feature"
 	geom["type"] = "Point"
 	geom["coordinates"] = [long,lat]
-	geom["address"] = address
+	geom["address"] = address.replace(" ", "_")
 	feature["geometry"] = geom
-	feature["properties"] = dict(category=types[randint(0,3)],investigates=investigates[randint(0,5)])
+	feature["properties"] = dict(category=types[randint(0,3)],investigates=getInvestigates(address.replace(" ", "_")))
 	return feature
 
 def checkLatLong(

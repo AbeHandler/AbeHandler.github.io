@@ -142,6 +142,7 @@ padding:none;
   position: absolute;
   top:5px;
   right:0px;
+  background-color: white;
 }
 
 .elastislide-wrapper{
@@ -318,8 +319,8 @@ console.warn(path)
     });
         $(".t").on("click", function(e) {
         
-        alert(this.id);
-
+        var adr = this.id;
+        $("#dialog").html('<img src="pic/' + adr + '">');
         $("#dialog").dialog("option", "position", {
           my: "center",
           at: "center",
