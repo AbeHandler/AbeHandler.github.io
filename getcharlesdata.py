@@ -15,7 +15,7 @@ with open('VisitingPhotos.csv', 'rU') as csvfile:
 			links = [i for i in row[3].split(" ") if len(i)>0] 
 			for l in links:
 				myfile = drive.CreateFile({'id': l.split("=")[2]})
-				if not os.path.exists('static/images/big/' + address + "_" + l.split("=")[2]):
-					myfile.GetContentFile('static/images/big/' + address + "_" + l.split("=")[2])
+				if not os.path.exists('static/images/big/' + address + ".jpg"):
+					myfile.GetContentFile('static/images/big/' + address + ".jpg")
 		except:
 			print row
