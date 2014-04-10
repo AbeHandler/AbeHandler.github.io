@@ -6,10 +6,9 @@
   <script src='{{ url_for('static', filename='vendor/jquery-1.11.0.js') }}' type="text/javascript" charset="utf-8"></script>
   !-->
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/jquery-ui.css') }}'>
     <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/demo.css') }}' />
     <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/elastislide.css') }}'/>
-    <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/custom.css') }}' />
 
 <style>
 
@@ -54,7 +53,20 @@ path:hover {
 text-align: center;
 margin-left: auto;
 margin-right: auto;
+  z-index: 30;
+  position: absolute;
+  top:5px;
+  right:0px;
+  height: 30px;
+  width: 150px;
+  color:black;
 }
+
+div#radio {
+background-color: white;
+}
+
+ul { list-style-type: none; }
 
 #photopane{
 z-index: 50;
@@ -75,40 +87,64 @@ position: absolute;
 cursor:default;
 }
 
+.ui-button-text-only .ui-button-text {
+   padding-top: .2em; 
+}
+
+.ui-button-text-only .ui-button-text {
+padding-right: 0px !important;
+}
+
 .demo{
-  fill:#b2df8a;
-  stroke:#b2df8a;
+  fill:#e41a1c;
+  stroke:#e41a1c;
 }
 
 .nora{
-  fill:#a6cee3;
-  stroke:#a6cee3;
+  fill:#377eb8;
+  stroke:#377eb8;
 }
 
 .fixed{
-  fill:#33a02c;
-  stroke:#33a02c;
+  fill:#4daf4a;
+  stroke:#4daf4a;
 }
 
 .sheriff{
-  fill:#1f78b4;
-  stroke:#1f78b4;
+  fill:#984ea3;
+  stroke:#984ea3;
+}
+
+.square{
+  width: 15px;
+  height: 15px;
+  border: 2px solid black;
+  float: left;
 }
 
 #sheriff_label{
-  background-color: #1f78b4;
+  background-color: #984ea3;
 }
 
 #fixed_label{
-  background-color: #33a02c;
+  background-color: #4daf4a;
 }
 
 #nora_label{
-  background-color: #a6cee3;
+  background-color: #377eb8;
 }
 
 #demo_label{
-  background-color: #b2df8a;
+  background-color: #e41a1c;
+}
+
+#lens_label{
+  background-color:black;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px; 
+  background-color: none;
+  border: 1px solid black;
 }
 
 #lensbutton{
@@ -160,6 +196,7 @@ float: left;
 <p id="map">
 <div id="buttons">
 
+<!--
 <div id="investigatebuttons"> 
 <form>
   <fieldset>
@@ -176,19 +213,22 @@ float: left;
   </fieldset>
 </form>
 </div>
+-->
+
+</div>
 
 <div id="blightbuttons"> 
     <div id="radio">
       <ul>
-       <li>Sheriff Sold</li>
-       <li>NORA Sold</li>
-       <li>Repaired</li>
-       <li>Demolished</li>
+       <li><span class="square" id="sheriff_label"></span>Sheriff Sold</li>
+       <li><span class="square"  id="nora_label"></span>NORA Sold</li>
+       <li><span class="square"  id="fixed_label"></span>Repaired</li>
+       <li><span class="square"  id="demo_label"></span>Demolished</li>
+       <li><span class="square"  id="lens_label"></span>Lens Investigates</li>
       </ul>
     </div>
 </div>
 
-</div>
 <div id="photopane">
 <p id="switch">click
 <div id="toggle">
@@ -257,12 +297,12 @@ var nora = true;
   
       var pth = this.pathname;
 
-      $("#dialog").html('<img src="pic' + pth + '">');
-
+      $("#dialog").html('<img src="pic' + pth + '"><div>lorem impsum blightstat</div>');
+      jQuery("#dialog").prev('.ui-dialog-titlebar').css("background", "white");
         $("#dialog").dialog("option", "position", {
-          my: "center",
-          at: "center",
-          of: window
+          my: "left",
+          at: "left",
+          of: "#map"
         });
         if ($("#dialog").dialog("isOpen") == false) {
           $("#dialog").dialog("open");
@@ -285,9 +325,7 @@ $("#switch").click(function() {
 
 $( "#radio" ).buttonset();
 var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
-    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-}));
+    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'));
 
     map.on('moveend', function() {
       var bounds = map.getBounds();
@@ -302,7 +340,7 @@ var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
         slicetot = f;
       }
       else{
-        slicetot=10;
+        slicetot=11;
       }
       
       var newpics = f.slice(0,slicetot);
