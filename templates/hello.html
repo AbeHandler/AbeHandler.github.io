@@ -194,16 +194,16 @@ float: left;
 <div id="toggle">
   
           <ul id="carousel" class="elastislide-list">
-            <li><a class="thumbnail" href="123_Octavia_St" id="1"><img src='{{ url_for('static', filename='images/123_Octavia_St.jpg') }}'/></a></li>
-            <li><a href="#" id="2"><img src='{{ url_for('static', filename='images/small/2.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="3"><img src='{{ url_for('static', filename='images/small/3.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="4"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="5"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="6"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="7"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="8"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="9" ><img src='{{ url_for('static', filename='images/small/9.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#" id="10"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="3306_PALMYRA_ST" id="1"><img src='{{ url_for('static', filename='images/thumbnails/3306_PALMYRA_ST.jpg') }}'/></a></li>
+            <li><a class="thumbnail" href="2336_ST_LOUIS_ST" id="2"><img src='{{ url_for('static', filename='images/thumbnails/2336_ST_LOUIS_ST.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="1932_IBERVILLE_ST" id="3"><img src='{{ url_for('static', filename='images/thumbnails/1932_IBERVILLE_ST.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="4"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="5"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="6"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="7"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="8"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="9" ><img src='{{ url_for('static', filename='images/small/9.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="#" id="10"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' alt="image01" /></a></li>
           </ul>
 
 </div>
@@ -256,9 +256,8 @@ var nora = true;
  $(".thumbnail").on("click", function(e) {
   
       var pth = this.pathname;
-      var mypicture = "pic" + pth;
 
-      $("#dialog").html('<img src="pic/myaddress">');
+      $("#dialog").html('<img src="pic' + pth + '">');
 
         $("#dialog").dialog("option", "position", {
           my: "center",
@@ -268,8 +267,9 @@ var nora = true;
         if ($("#dialog").dialog("isOpen") == false) {
           $("#dialog").dialog("open");
         }
-
+        $("#dialog").dialog('option', 'title', pth.replace(/_/g, " ").replace("/", ""));
   });
+
 
 $("#switch").click(function() {
   $( "#toggle" ).toggle( "slide" );
@@ -311,6 +311,7 @@ var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
         { 
           var inner = '<img src="thumb/' + f[i].id + '">';
           $("#" + i).html(inner);
+          $("#" + i).attr("href", f[i].id);
         }
     });
 
