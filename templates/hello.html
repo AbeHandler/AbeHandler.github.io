@@ -289,7 +289,23 @@ var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
   attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 }));
 
-    map.on('moveend', function() {console.log(map.getBounds());});
+    map.on('moveend', function() {
+      var bounds = map.getBounds();
+      var selc = 'path[lat>' + String(bounds._northEast.lat) +  ']'
+      var d = 'div[lat>200]';
+      var e = $("path").filter(function(){
+        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat &&
+        return $(this).attr("lat")>Math.abs(bounds._northEast.lat) && $(this).attr("lat")<Math.abs(bounds._southWest.lat)
+      }
+      ).length;
+      var f = $("path").filter(function(){
+        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat &&
+        return $(this).attr("long")<Math.abs(bounds._southWest.lng) && $(this).attr("long")>Math.abs(bounds._northEast.lng)
+              && $(this).attr("lat")<Math.abs(bounds._northEast.lat) && $(this).attr("lat")>Math.abs(bounds._southWest.lat);
+      }
+      );
+
+      });
 
   var svg = d3.select(map.getPanes().overlayPane).append("svg"),
       g = svg.append("g").attr("class", "leaflet-zoom-hide");
@@ -306,6 +322,10 @@ console.warn(path)
       return d.properties.category + " " + d.properties.investigates;;
     }).attr("id", function(d){
       return d.geometry.address;
+    }).attr("lat", function(d){
+       return Math.abs(d.geometry.coordinates[1]);
+    }).attr("long", function(d){
+       return Math.abs(d.geometry.coordinates[0]);
     });
         $(".t").on("click", function(e) {
         
