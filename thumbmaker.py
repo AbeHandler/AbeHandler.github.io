@@ -1,8 +1,15 @@
 from PIL import Image
 import os
 import ntpath
-fls = os.listdir("static/images/big")
+import glob
+
+def listdir_nohidden(path):
+    return glob.glob(os.path.join(path, '*'))
+
+fls = listdir_nohidden("static/images/big")
+
 for f in fls:
-	image = Image.open("static/images/big/" + f)
+	image = Image.open(f)
 	image.thumbnail((100, 100), Image.ANTIALIAS)
-	image.save('static/images/thumbnails/' + f, 'JPEG', quality=88)
+	head, tail = ntpath.split(f)
+	image.save('static/images/thumbnails/' + tail, 'JPEG', quality=88)

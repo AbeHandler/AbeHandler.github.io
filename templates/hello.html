@@ -194,16 +194,16 @@ float: left;
 <div id="toggle">
   
           <ul id="carousel" class="elastislide-list">
-            <li><a class="thumbnail" href="123_Octavia_St"><img src='{{ url_for('static', filename='images/123_Octavia_St.jpg') }}'/></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/2.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/3.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/9.jpg') }}' alt="image01" /></a></li>
-            <li><a href="#"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="123_Octavia_St" id="1"><img src='{{ url_for('static', filename='images/123_Octavia_St.jpg') }}'/></a></li>
+            <li><a href="#" id="2"><img src='{{ url_for('static', filename='images/small/2.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="3"><img src='{{ url_for('static', filename='images/small/3.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="4"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="5"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="6"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="7"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="8"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="9" ><img src='{{ url_for('static', filename='images/small/9.jpg') }}' alt="image01" /></a></li>
+            <li><a href="#" id="10"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' alt="image01" /></a></li>
           </ul>
 
 </div>
@@ -291,21 +291,28 @@ var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
 
     map.on('moveend', function() {
       var bounds = map.getBounds();
-      var selc = 'path[lat>' + String(bounds._northEast.lat) +  ']'
-      var d = 'div[lat>200]';
-      var e = $("path").filter(function(){
-        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat &&
-        return $(this).attr("lat")>Math.abs(bounds._northEast.lat) && $(this).attr("lat")<Math.abs(bounds._southWest.lat)
-      }
-      ).length;
-      var f = $("path").filter(function(){
-        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat &&
+      var f = $("path.t").filter(function(){
+        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat && 
         return $(this).attr("long")<Math.abs(bounds._southWest.lng) && $(this).attr("long")>Math.abs(bounds._northEast.lng)
               && $(this).attr("lat")<Math.abs(bounds._northEast.lat) && $(this).attr("lat")>Math.abs(bounds._southWest.lat);
       }
       );
-
-      });
+      var slicetot = 0;
+      if (f.length<10){
+        slicetot = f;
+      }
+      else{
+        slicetot=10;
+      }
+      
+      var newpics = f.slice(0,slicetot);
+      
+      for (var i=0;i<newpics.length;i++)
+        { 
+          var inner = '<img src="thumb/' + f[i].id + '">';
+          $("#" + i).html(inner);
+        }
+    });
 
   var svg = d3.select(map.getPanes().overlayPane).append("svg"),
       g = svg.append("g").attr("class", "leaflet-zoom-hide");
