@@ -24,7 +24,7 @@ demos = 'BlightStatus_Demolitions.csv'
 counter = 0
 
 def getInvestigates(address):
-    dr = "static/images/big/" + address
+    dr = "static/images/big/" + address + ".jpg"
     if os.path.exists(dr):
         return "t"
     return "f"
