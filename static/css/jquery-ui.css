@@ -365,7 +365,28 @@ button.ui-button::-moz-focus-inner {
 
 p#switch {
 background-color: white;
-width: 792px;
+
+}
+
+#radio li{
+	padding-left: 5px;
+}
+
+#radio ul {
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
+#radio{
+	border: 1px solid black;
+}
+
+.toggle_label{
+	float: left;
+	z-index: 700;
+	position:absolute;
+	width: 100px;
+	background-color: white;
 }
 
 span.ui-button-text {
