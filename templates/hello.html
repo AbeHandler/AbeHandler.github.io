@@ -153,6 +153,7 @@ function showDialog(pth){
    $(".ui-dialog").css({ width: 500 });
 };
 
+var show = true;
 
  $(".thumbnail").on("click", function(e) {
       var pth = this.pathname;
@@ -161,6 +162,13 @@ function showDialog(pth){
 
 
 $("#switch").click(function() {
+  if (show){
+    $("#switch").html("Show");
+    show=false;
+  }else{
+    show=true;
+    $("#switch").html("Hide");
+  }
   $( "#toggle" ).toggle( "slide" );
 });
 
