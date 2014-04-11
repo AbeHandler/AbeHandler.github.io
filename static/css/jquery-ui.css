@@ -365,6 +365,7 @@ button.ui-button::-moz-focus-inner {
 
 p#switch {
 background-color: white;
+width: 795px;
 
 }
 

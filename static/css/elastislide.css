@@ -17,6 +17,11 @@ svg {
 font-size: 8px;
 }
 
+.legend_text{
+	padding-left: 5px;
+	float:left;
+}
+
 path {
   fill-opacity: 1;
   stroke-width: .5px;
@@ -39,18 +44,28 @@ path:hover {
 text-align: center;
 margin-left: auto;
 margin-right: auto;
-  z-index: 30;
-  position: absolute;
-  top:5px;
-  right:0px;
-  height: 30px;
-  width: 150px;
-  color:black;
+z-index: 30;
+position: absolute;
+top:5px;
+right:0px;
+height: 30px;
+width: 170px;
+color:black;
 }
 
 div#radio {
 background-color: white;
+height: 100px;
 }
+
+#radio li{
+	float: left;
+}
+
+#radio span{
+	padding-left: 5px;
+}
+
 
 ul { list-style-type: none; }
 
