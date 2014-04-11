@@ -100,6 +100,7 @@
 	text-indent: -9000px;
 	cursor: pointer;
 	opacity: 0.8;
+	background-color: #984ea3;
 }
 
 .elastislide-wrapper nav span:hover {

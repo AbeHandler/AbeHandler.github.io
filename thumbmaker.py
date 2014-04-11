@@ -10,6 +10,6 @@ fls = listdir_nohidden("static/images/big")
 
 for f in fls:
 	image = Image.open(f)
-	image.thumbnail((100, 100), Image.ANTIALIAS)
+	image.thumbnail((200, 200), Image.ANTIALIAS)
 	head, tail = ntpath.split(f)
 	image.save('static/images/thumbnails/' + tail, 'JPEG', quality=88)

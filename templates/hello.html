@@ -122,6 +122,10 @@ padding-right: 0px !important;
   float: left;
 }
 
+button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close {
+width: 50px !important;
+}
+
 #sheriff_label{
   background-color: #984ea3;
 }
@@ -235,15 +239,15 @@ float: left;
   
           <ul id="carousel" class="elastislide-list">
             <li><a class="thumbnail" href="3306_PALMYRA_ST" id="1"><img src='{{ url_for('static', filename='images/thumbnails/3306_PALMYRA_ST.jpg') }}'/></a></li>
-            <li><a class="thumbnail" href="2336_ST_LOUIS_ST" id="2"><img src='{{ url_for('static', filename='images/thumbnails/2336_ST_LOUIS_ST.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="1932_IBERVILLE_ST" id="3"><img src='{{ url_for('static', filename='images/thumbnails/1932_IBERVILLE_ST.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="4"><img src='{{ url_for('static', filename='images/small/4.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="5"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="6"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="7"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="8"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="9" ><img src='{{ url_for('static', filename='images/small/9.jpg') }}' alt="image01" /></a></li>
-            <li><a class="thumbnail" href="#" id="10"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' alt="image01" /></a></li>
+            <li><a class="thumbnail" href="2336_ST_LOUIS_ST" id="2"><img src='{{ url_for('static', filename='images/thumbnails/2336_ST_LOUIS_ST.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="1932_IBERVILLE_ST" id="3"><img src='{{ url_for('static', filename='images/thumbnails/1932_IBERVILLE_ST.jpg') }}'/></a></li>
+            <li><a class="thumbnail" href="#" id="4"><img src='{{ url_for('static', filename='images/small/4.jpg') }}'  /></a></li>
+            <li><a class="thumbnail" href="#" id="5"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="#" id="6"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="#" id="7"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="#" id="8"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="#" id="9" ><img src='{{ url_for('static', filename='images/small/9.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="#" id="10"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' /></a></li>
           </ul>
 
 </div>
@@ -292,12 +296,9 @@ var fixed = true;
 var sheriff = true;
 var nora = true;
 
+function showDialog(pth){
 
- $(".thumbnail").on("click", function(e) {
-  
-      var pth = this.pathname;
-
-      $("#dialog").html('<img src="pic' + pth + '"><div>lorem impsum blightstat</div>');
+  $("#dialog").html('<img src="pic' + pth + '"><div>lorem impsum blightstat</div>');
       jQuery("#dialog").prev('.ui-dialog-titlebar').css("background", "white");
         $("#dialog").dialog("option", "position", {
           my: "left",
@@ -307,7 +308,13 @@ var nora = true;
         if ($("#dialog").dialog("isOpen") == false) {
           $("#dialog").dialog("open");
         }
-        $("#dialog").dialog('option', 'title', pth.replace(/_/g, " ").replace("/", ""));
+  $("#dialog").dialog('option', 'title', pth.replace(/_/g, " ").replace("/", ""));
+
+};
+
+
+ $(".thumbnail").on("click", function(e) {
+      var pth = this.pathname;
   });
 
 
@@ -324,7 +331,7 @@ $("#switch").click(function() {
   });
 
 $( "#radio" ).buttonset();
-var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
+var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13, minZoom:10, maxZoom:18})
     .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'));
 
     map.on('moveend', function() {
@@ -347,7 +354,7 @@ var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13})
       
       for (var i=0;i<newpics.length;i++)
         { 
-          var inner = '<img src="thumb/' + f[i].id + '">';
+          var inner = '<span class="ui-button-text"><img src="thumb/' + f[i].id + '"></span>';
           $("#" + i).html(inner);
           $("#" + i).attr("href", f[i].id);
         }
@@ -375,16 +382,8 @@ console.warn(path)
     });
         $(".t").on("click", function(e) {
         
-        var adr = this.id;
-        $("#dialog").html('<img src="pic/' + adr + '">');
-        $("#dialog").dialog("option", "position", {
-          my: "center",
-          at: "center",
-          of: window
-        });
-        if ($("#dialog").dialog("isOpen") == false) {
-          $("#dialog").dialog("open");
-        }
+        var adr = "/" + this.id;
+        showDialog(adr);
   });
 
   map.on("viewreset", reset);
