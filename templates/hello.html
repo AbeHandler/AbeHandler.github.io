@@ -303,6 +303,10 @@ var fixed = true;
 var sheriff = true;
 var nora = true;
 
+$( document ).ready(function() {
+  loadThumbs();
+});
+
 function showDialog(pth){
 
   $("#dialog").html('<img src="pic' + pth + '"><div id="caption"></div>');
@@ -322,12 +326,12 @@ function showDialog(pth){
   $("#dialog").dialog('option', 'title', pth.replace(/_/g, " ").replace("/", ""));
   $(".ui-dialog").css({ top: 50 });
   $(".ui-dialog").css({ left: 125 });
-  $(".ui-button-text:2").html("Close");
 };
 
 
  $(".thumbnail").on("click", function(e) {
       var pth = this.pathname;
+      showDialog(pth);
   });
 
 
@@ -343,12 +347,8 @@ $("#switch").click(function() {
       });
   });
 
-$( "#radio" ).buttonset();
-var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13, minZoom:10, maxZoom:18})
-    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'));
-
-    map.on('moveend', function() {
-      var bounds = map.getBounds();
+function loadThumbs(){
+  var bounds = map.getBounds();
       var f = $("path.t").filter(function(){
         //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat && 
         return $(this).attr("long")<Math.abs(bounds._southWest.lng) && $(this).attr("long")>Math.abs(bounds._northEast.lng)
@@ -371,6 +371,14 @@ var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13, minZoom:10, maxZo
           $("#" + i).html(inner);
           $("#" + i).attr("href", f[i].id);
         }
+}
+
+$( "#radio" ).buttonset();
+var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13, minZoom:10, maxZoom:18})
+    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'));
+
+    map.on('moveend', function() {
+      loadThumbs();
     });
 
   var svg = d3.select(map.getPanes().overlayPane).append("svg"),
@@ -423,7 +431,7 @@ console.warn(path)
     var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
     var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
     if (is_firefox){
-      //point.x = point.x - 192;
+      //point.x = point.x - 192; hiding correction
     }
     return [point.x, point.y];
   }
