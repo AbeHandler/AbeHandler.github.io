@@ -110,6 +110,8 @@ padding-right: 0px !important;
   stroke:#4daf4a;
 }
 
+.ui-dialog { margin:0 auto; }
+
 .sheriff{
   fill:#984ea3;
   stroke:#984ea3;
@@ -234,20 +236,20 @@ float: left;
 </div>
 
 <div id="photopane">
-<p id="switch">click
+<p id="switch">Hide
 <div id="toggle">
   
           <ul id="carousel" class="elastislide-list">
             <li><a class="thumbnail" href="3306_PALMYRA_ST" id="1"><img src='{{ url_for('static', filename='images/thumbnails/3306_PALMYRA_ST.jpg') }}'/></a></li>
             <li><a class="thumbnail" href="2336_ST_LOUIS_ST" id="2"><img src='{{ url_for('static', filename='images/thumbnails/2336_ST_LOUIS_ST.jpg') }}' /></a></li>
             <li><a class="thumbnail" href="1932_IBERVILLE_ST" id="3"><img src='{{ url_for('static', filename='images/thumbnails/1932_IBERVILLE_ST.jpg') }}'/></a></li>
-            <li><a class="thumbnail" href="#" id="4"><img src='{{ url_for('static', filename='images/small/4.jpg') }}'  /></a></li>
-            <li><a class="thumbnail" href="#" id="5"><img src='{{ url_for('static', filename='images/small/5.jpg') }}' /></a></li>
-            <li><a class="thumbnail" href="#" id="6"><img src='{{ url_for('static', filename='images/small/6.jpg') }}' /></a></li>
-            <li><a class="thumbnail" href="#" id="7"><img src='{{ url_for('static', filename='images/small/7.jpg') }}' /></a></li>
-            <li><a class="thumbnail" href="#" id="8"><img src='{{ url_for('static', filename='images/small/8.jpg') }}' /></a></li>
-            <li><a class="thumbnail" href="#" id="9" ><img src='{{ url_for('static', filename='images/small/9.jpg') }}' /></a></li>
-            <li><a class="thumbnail" href="#" id="10"><img src='{{ url_for('static', filename='images/small/10.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="1832_GORDON_ST" id="4"><img src='{{ url_for('static', filename='images/thumbnails/1832_GORDON_ST.jpg') }}'  /></a></li>
+            <li><a class="thumbnail" href="2825_BANKS_ST" id="5"><img src='{{ url_for('static', filename='images/thumbnails/2825_BANKS_ST.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="305_HOMER_ST" id="6"><img src='{{ url_for('static', filename='images/thumbnails/305_HOMER_ST.jpg.') }}' /></a></li>
+            <li><a class="thumbnail" href="168_DANNY_DR" id="7"><img src='{{ url_for('static', filename='images/thumbnails/168_DANNY_DR.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="5439_EADS_ST" id="8"><img src='{{ url_for('static', filename='images/thumbnails/5439_EADS_ST.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="10130_DREUX_AVE" id="9" ><img src='{{ url_for('static', filename='images/thumbnails/10130_DREUX_AVE.jpg') }}' /></a></li>
+            <li><a class="thumbnail" href="6006_WILTON_DR" id="10"><img src='{{ url_for('static', filename='images/thumbnails/6006_WILTON_DR.jpg') }}' /></a></li>
           </ul>
 
 </div>
@@ -274,7 +276,12 @@ float: left;
         $("#dialog").dialog({
           autoOpen: false,
           resizable: false,
-          width: "auto"
+          width: "auto",  
+          buttons: {
+                Close: function () {
+                    $(this).dialog("close");
+                }
+          }
         });
       }); 
       $( '#carousel' ).elastislide( {
@@ -287,8 +294,8 @@ float: left;
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script>
+<script type="text/javascript" src='{{ url_for('static', filename='js/d3.min.js') }}'></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 <script>
 
 var demo = true;
@@ -298,18 +305,24 @@ var nora = true;
 
 function showDialog(pth){
 
-  $("#dialog").html('<img src="pic' + pth + '"><div>lorem impsum blightstat</div>');
+  $("#dialog").html('<img src="pic' + pth + '"><div id="caption"></div>');
       jQuery("#dialog").prev('.ui-dialog-titlebar').css("background", "white");
         $("#dialog").dialog("option", "position", {
-          my: "left",
-          at: "left",
-          of: "#map"
+          my: "center",
+          at: "center",
+          of: "#mapholder"
+        });
+        $.post( "caption" + pth, function( data ) {
+            $( "#caption" ).html(data);
         });
         if ($("#dialog").dialog("isOpen") == false) {
           $("#dialog").dialog("open");
+          $(".ui-dialog").attr('top', '50px');
         }
   $("#dialog").dialog('option', 'title', pth.replace(/_/g, " ").replace("/", ""));
-
+  $(".ui-dialog").css({ top: 50 });
+  $(".ui-dialog").css({ left: 125 });
+  $(".ui-button-text:2").html("Close");
 };
 
 
@@ -408,6 +421,10 @@ console.warn(path)
   // Use Leaflet to implement a D3 geographic projection.
   function project(x) {
     var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+    var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+    if (is_firefox){
+      //point.x = point.x - 192;
+    }
     return [point.x, point.y];
   }
  
