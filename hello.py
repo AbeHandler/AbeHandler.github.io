@@ -11,14 +11,18 @@ def hello(name=None):
 
 @app.route('/pic/<string:address>', methods= ["GET"])
 def pic(address=None):
-	pth = 'images/big/'+ address
+	pth = 'images/big/'+ address + ".jpg"
 	print pth
 	return app.send_static_file(pth)
 
 @app.route('/thumb/<string:address>', methods= ["GET"])
 def thumb(address=None):
 	pth = 'images/thumbnails/'+ address + ".jpg"
-	print pth
+	return app.send_static_file(pth)
+
+@app.route('/caption/<string:address>', methods= ["POST"])
+def caption(address=None):
+	pth = 'captions/'+ address 
 	return app.send_static_file(pth)
 
 if __name__ == '__main__':
