@@ -17,9 +17,11 @@ with open('Visited4.csv', 'rU') as csvfile:
             notes = row[15]
             owner = row[7]
             ownerlink = row[5]
-            caption = address.replace("_", "") + "," +neighborhod + "<br>" + "History:"
-            if len(notes)==0:
-                caption = "<br>" + caption + "Notes:" + notes
+            caption = address.replace("_", " ") + ", " +neighborhod + "<br>" + "History: " + row[8] + " " + row[10]
+            if len(row[9])>0:
+                caption = caption + " , " + row[9] + " " + row[11]
+            if not len(notes)==0:
+                caption = caption + "<br>" + "Notes: " + notes
             with open("static/captions/" + address,"a+") as f:
                 f.write(caption)
 			#links = [i for i in row[3].split(" ") if len(i)>0]
