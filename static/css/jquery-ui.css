@@ -363,12 +363,6 @@ button.ui-button::-moz-focus-inner {
   visibility: hidden;
 }
 
-p#switch {
-background-color: white;
-width: 795px;
-
-}
-
 #radio li{
 	padding-left: 5px;
 }

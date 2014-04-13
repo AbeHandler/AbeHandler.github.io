@@ -35,10 +35,8 @@
 </div>
 
 <div id="photopane">
-  <div id="toggle_label"><p id="switch">Hide</p></div>
-    <div id="toggle">
-          <ul id="carousel" class="elastislide-list">
-            <li><a class="thumbnail" href="3306_PALMYRA_ST" id="1"><img src='{{ url_for('static', filename='images/thumbnails/3306_PALMYRA_ST.jpg') }}'/></a></li>
+    <ul id="carousel" class="elastislide-list">
+      <li><a class="thumbnail" href="3306_PALMYRA_ST" id="1"><img src='{{ url_for('static', filename='images/thumbnails/3306_PALMYRA_ST.jpg') }}'/></a></li>
             <li><a class="thumbnail" href="2336_ST_LOUIS_ST" id="2"><img src='{{ url_for('static', filename='images/thumbnails/2336_ST_LOUIS_ST.jpg') }}' /></a></li>
             <li><a class="thumbnail" href="1932_IBERVILLE_ST" id="3"><img src='{{ url_for('static', filename='images/thumbnails/1932_IBERVILLE_ST.jpg') }}'/></a></li>
             <li><a class="thumbnail" href="1832_GORDON_ST" id="4"><img src='{{ url_for('static', filename='images/thumbnails/1832_GORDON_ST.jpg') }}'  /></a></li>
@@ -49,17 +47,16 @@
             <li><a class="thumbnail" href="10130_DREUX_AVE" id="9" ><img src='{{ url_for('static', filename='images/thumbnails/10130_DREUX_AVE.jpg') }}' /></a></li>
             <li><a class="thumbnail" href="6006_WILTON_DR" id="10"><img src='{{ url_for('static', filename='images/thumbnails/6006_WILTON_DR.jpg') }}' /></a></li>
           </ul>
-      </div>
 </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.5/d3.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <script type="text/javascript" src='{{ url_for('static', filename='js/modernizr.custom.17475.js') }}'></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/jquery.elastislide.js') }}'></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/blight.js') }}'></script>
-    <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 </body>
 

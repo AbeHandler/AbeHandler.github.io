@@ -13,6 +13,12 @@ html { height: 100%; }
 	margin: 0;
 }
 
+div#toggle_label {
+width: 10px;
+z-index: 90000;
+position: absolute;
+}
+
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before,
 .clearfix:after {
