@@ -74,6 +74,10 @@ $(function() {
         });
 });
 
+$(".t").mouseover(function() {
+    alert("sh");
+});
+
 var map = new L.Map("map", {
     center: [29.95, -90.05],
     zoom: 13,
@@ -111,6 +115,25 @@ d3.json('static/out.json', function(collection) {
     $(".t").on("click", function(e) {
         var adr = "/" + this.id;
         showDialog(adr);
+    });
+
+    //$(".t").on("mouseover", function(e) {
+    //    alert("S");
+    //});
+
+    $(function() {
+        $('.t').tipsy({
+            gravity: 's',
+            title: function() {
+                return "hello";
+            }
+        });
+        $('.f').tipsy({
+            gravity: 's',
+            title: function() {
+                return "hello";
+            }
+        });
     });
 
     map.on("viewreset", reset);
