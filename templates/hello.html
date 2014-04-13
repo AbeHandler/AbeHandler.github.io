@@ -2,19 +2,14 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
 
-  <!-- <link rel="stylesheet" href={{ url_for('static', filename='css/reset.css') }} type="text/css" media="screen" charset="utf-8">
-  <script src='{{ url_for('static', filename='vendor/jquery-1.11.0.js') }}' type="text/javascript" charset="utf-8"></script>
-  !-->
-
     <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/jquery-ui.css') }}'>
     <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/demo.css') }}' />
     <link rel="stylesheet" type="text/css" href='{{ url_for('static', filename='css/elastislide.css') }}'/>
 
-<style>
+    <style>
+    @import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css);
+    </style>
 
-@import url(//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css);
-
-</style>
 </head>
 
 <body>
@@ -24,25 +19,6 @@
 <div id="mapholder">
 <p id="map">
 <div id="buttons">
-
-<!--
-<div id="investigatebuttons"> 
-<form>
-  <fieldset>
-    <legend>Blight Elimination: Official Numbers and Lens Investigation</legend>
-    <div id="investigation_toggle">
-
-      <input type="radio" id="allblight_on" name="project" checked="checked">
-      <label for="allblight_on" id="allblight_on_label" >All properties</label>
-
-      <input type="radio" id="investigate_on" name="project" >
-      <label for="investigate_on" id="investigate_on_label" >Lens investigates</label>
-
-    </div>
-  </fieldset>
-</form>
-</div>
--->
 
 </div>
 
@@ -59,10 +35,8 @@
 </div>
 
 <div id="photopane">
-
-<div id="toggle_label"><p id="switch">Hide</div>
-
-<div id="toggle">
+  <div id="toggle_label"><p id="switch">Hide</p></div>
+    <div id="toggle">
           <ul id="carousel" class="elastislide-list">
             <li><a class="thumbnail" href="3306_PALMYRA_ST" id="1"><img src='{{ url_for('static', filename='images/thumbnails/3306_PALMYRA_ST.jpg') }}'/></a></li>
             <li><a class="thumbnail" href="2336_ST_LOUIS_ST" id="2"><img src='{{ url_for('static', filename='images/thumbnails/2336_ST_LOUIS_ST.jpg') }}' /></a></li>
@@ -75,26 +49,16 @@
             <li><a class="thumbnail" href="10130_DREUX_AVE" id="9" ><img src='{{ url_for('static', filename='images/thumbnails/10130_DREUX_AVE.jpg') }}' /></a></li>
             <li><a class="thumbnail" href="6006_WILTON_DR" id="10"><img src='{{ url_for('static', filename='images/thumbnails/6006_WILTON_DR.jpg') }}' /></a></li>
           </ul>
-
-</div>
-</div>
+      </div>
 </div>
 
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <script type="text/javascript" src='{{ url_for('static', filename='js/d3.min.js') }}'></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/modernizr.custom.17475.js') }}'></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src='{{ url_for('static', filename='js/jquerypp.custom.js') }}'></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/jquery.elastislide.js') }}'></script>
+    <script type="text/javascript" src='{{ url_for('static', filename='js/blight.js') }}'></script>
     <script type="text/javascript">  
-      var all = true;
-      $("#investigatebuttons").change(function() {
-        if (all){
-          $( ".f").css("visibility", "hidden");
-          all=false;
-        } else{
-          $( ".f").css("visibility", "visible");
-          all=true;
-        }
-      });
 
       $(function() {
         $("#dialog").dialog({
@@ -108,174 +72,10 @@
           }
         });
       }); 
-      $( '#carousel' ).elastislide( {
-        minItems : 2
-      } );
 
     </script>
 
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-
-<script type="text/javascript" src='{{ url_for('static', filename='js/d3.min.js') }}'></script>
-<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-<script>
-
-var demo = true;
-var fixed = true;
-var sheriff = true;
-var nora = true;
-
-$( document ).ready(function() {
-  loadThumbs();
-});
-
-function showDialog(pth){
-
-  $("#dialog").html('<img src="pic' + pth + '"><div id="caption"></div>');
-      jQuery("#dialog").prev('.ui-dialog-titlebar').css("background", "white");
-        $("#dialog").dialog("option", "position", {
-          my: "center",
-          at: "center",
-          of: "#mapholder"
-        });
-        $.post( "caption" + pth, function( data ) {
-            $( "#caption" ).html(data);
-        });
-        if ($("#dialog").dialog("isOpen") == false) {
-          $("#dialog").dialog("open");
-          $(".ui-dialog").attr('top', '50px');
-        }
-  $("#dialog").dialog('option', 'title', pth.replace(/_/g, " ").replace("/", ""));
-  $(".ui-dialog").css({ top: 50 });
-  $(".ui-dialog").css({ left: 125 });
-   $(".ui-dialog").css({ width: 500 });
-};
-
-var show = true;
-
- $(".thumbnail").on("click", function(e) {
-      var pth = this.pathname;
-      showDialog(pth);
-  });
-
-
-$("#switch").click(function() {
-  if (show){
-    $("#switch").html("Show");
-    show=false;
-  }else{
-    show=true;
-    $("#switch").html("Hide");
-  }
-  $( "#toggle" ).toggle( "slide" );
-});
-
-  $(function() {
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        event.preventDefault();
-      });
-  });
-
-function loadThumbs(){
-  var bounds = map.getBounds();
-      var f = $("path.t").filter(function(){
-        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat && 
-        return $(this).attr("long")<Math.abs(bounds._southWest.lng) && $(this).attr("long")>Math.abs(bounds._northEast.lng)
-              && $(this).attr("lat")<Math.abs(bounds._northEast.lat) && $(this).attr("lat")>Math.abs(bounds._southWest.lat);
-      }
-      );
-      var slicetot = 0;
-      if (f.length<10){
-        slicetot = f;
-      }
-      else{
-        slicetot=11;
-      }
-      
-      var newpics = f.slice(0,slicetot);
-      
-      for (var i=0;i<newpics.length;i++)
-        { 
-          var inner = '<span class="ui-button-text"><img src="thumb/' + f[i].id + '"></span>';
-          $("#" + i).html(inner);
-          $("#" + i).attr("href", f[i].id);
-        }
-}
-
-$( "#radio" ).buttonset();
-var map = new L.Map("map", {center: [29.95, -90.05], zoom: 13, minZoom:10, maxZoom:18})
-    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'));
-
-    map.on('moveend', function() {
-      loadThumbs();
-    });
-
-  var svg = d3.select(map.getPanes().overlayPane).append("svg"),
-      g = svg.append("g").attr("class", "leaflet-zoom-hide");
- 
-  
-d3.json('{{url_for('static', filename='out.json') }}', function(collection) {
-  var bounds = d3.geo.bounds(collection),
-      path = d3.geo.path().projection(project).pointRadius(function (d) {return 2});
-console.warn(path)
- 
-  var feature = g.selectAll("path")
-      .data(collection.features)
-    .enter().append("path").attr("class", function(d){
-      return d.properties.category + " " + d.properties.investigates;;
-    }).attr("id", function(d){
-      return d.geometry.address;
-    }).attr("lat", function(d){
-       return Math.abs(d.geometry.coordinates[1]);
-    }).attr("long", function(d){
-       return Math.abs(d.geometry.coordinates[0]);
-    });
-        $(".t").on("click", function(e) {
-        
-        var adr = "/" + this.id;
-        showDialog(adr);
-  });
-
-  map.on("viewreset", reset);
-  reset();
- 
-  // Reposition the SVG to cover the features.
-  function reset() {
-    console.warn(bounds)
-    var bottomLeft = project(bounds[0]),
-        topRight = project(bounds[1]);
- 
-    svg .attr("width", topRight[0] - bottomLeft[0])
-        .attr("height", bottomLeft[1] - topRight[1])
-        .style("margin-left", bottomLeft[0] + "px")
-        .style("margin-top", topRight[1] + "px").attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
- 
-     g .attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
- 
-    feature.attr("d", path)
-  }
- 
-  // Use Leaflet to implement a D3 geographic projection.
-  function project(x) {
-    var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
-    var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-    if (is_firefox){
-      //point.x = point.x - 192; hiding correction
-    }
-    return [point.x, point.y];
-  }
- 
-  
-  });
-
-
-</script>
-
-
+    <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 </body>
 
