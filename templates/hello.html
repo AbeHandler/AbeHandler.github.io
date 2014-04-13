@@ -53,28 +53,12 @@
 </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-    <script type="text/javascript" src='{{ url_for('static', filename='js/d3.min.js') }}'></script>
-    <script type="text/javascript" src='{{ url_for('static', filename='js/modernizr.custom.17475.js') }}'></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.5/d3.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script type="text/javascript" src='{{ url_for('static', filename='js/modernizr.custom.17475.js') }}'></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/jquery.elastislide.js') }}'></script>
     <script type="text/javascript" src='{{ url_for('static', filename='js/blight.js') }}'></script>
-    <script type="text/javascript">  
-
-      $(function() {
-        $("#dialog").dialog({
-          autoOpen: false,
-          resizable: false,
-          width: "auto",  
-          buttons: {
-                Close: function () {
-                    $(this).dialog("close");
-                }
-          }
-        });
-      }); 
-
-    </script>
-
     <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 </body>

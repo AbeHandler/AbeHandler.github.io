@@ -6,6 +6,19 @@ $(document).ready(function() {
     loadThumbs();
 });
 
+$(function() {
+    $("#dialog").dialog({
+        autoOpen: false,
+        resizable: false,
+        width: "auto",
+        buttons: {
+            Close: function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+});
+
 function showDialog(pth) {
 
     $("#dialog").html('<img src="pic' + pth + '"><div id="caption"></div>');
