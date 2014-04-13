@@ -29,6 +29,12 @@ def getInvestigates(address):
         return "t"
     return "f"
 
+def getThumbnail(address):
+    dr = "static/images/thumbnails/" + address + ".jpg"
+    if os.path.exists(dr):
+        return "yesthumbnail"
+    return "nothumbnail"
+
 def getFeature(lat, long, address):
 	feature = dict()
 	geom = dict()
@@ -37,7 +43,7 @@ def getFeature(lat, long, address):
 	geom["coordinates"] = [long,lat]
 	geom["address"] = address.replace(" ", "_")
 	feature["geometry"] = geom
-	feature["properties"] = dict(category=types[randint(0,3)],investigates=getInvestigates(address.replace(" ", "_")))
+	feature["properties"] = dict(category=types[randint(0,3)],thumbnail=getThumbnail(address.replace(" ", "_")), investigates=getInvestigates(address.replace(" ", "_")))
 	return feature
 
 def checkLatLong(
@@ -73,7 +79,6 @@ with open('BlightStatus_Demolitions.csv', 'rU') as csvfile:
             geom['coordinates'] = [lat, long]
             feature['geometry'] = geom
             feature['abatement'] = 'demo'
-            feature['investigates'] = 'f'
             featuredict.append(getFeature(lat,long, address))
             counter+=1
         except:
@@ -93,7 +98,6 @@ with open('Compliance.csv', 'rU') as csvfile:
         geom['coordinates'] = [lat, long]
         feature['geometry'] = geom
         feature['abatement'] = 'fixed'
-        feature['investigates'] = 'f'
         featuredict.append(getFeature(lat,long, address))
         counter+=1
 
@@ -111,7 +115,6 @@ with open('Nora.csv', 'rU') as csvfile:
             geom['coordinates'] = [lat, long]
             feature['geometry'] = geom
             feature['abatement'] = 'nora'
-            feature['investigates'] = 'f'
             featuredict.append(getFeature(lat,long, addres))
             counter+=1
         except:
@@ -129,7 +132,6 @@ with open('Sheriff.csv', 'rU') as csvfile:
     	    geom['coordinates'] = [lat, long]
     	    feature['geometry'] = geom
     	    feature['abatement'] = 'sheriff'
-    	    feature['investigates'] = 'f'
     	    featuredict.append(getFeature(lat,long, address))
     	    counter+=1
         except:

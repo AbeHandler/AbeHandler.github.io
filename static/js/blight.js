@@ -100,7 +100,7 @@ d3.json('static/out.json', function(collection) {
     var feature = g.selectAll("path")
         .data(collection.features)
         .enter().append("path").attr("class", function(d) {
-            return d.properties.category + " " + d.properties.investigates;
+            return d.properties.category + " " + d.properties.investigates + " " + d.properties.thumbnail;
         }).attr("id", function(d) {
             return d.geometry.address;
         }).attr("lat", function(d) {
@@ -137,7 +137,7 @@ d3.json('static/out.json', function(collection) {
         var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
         var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
         if (is_firefox) {
-            //point.x = point.x - 192; hiding correction
+            point.x = point.x - 192;
         }
         return [point.x, point.y];
     }
@@ -146,8 +146,7 @@ d3.json('static/out.json', function(collection) {
 
 function loadThumbs() {
     var bounds = map.getBounds();
-    var f = $("path.t").filter(function() {
-        //$(this).attr("lat")<bounds._northEast.lat && $(this).attr("lat")>bounds._southWest.lat && 
+    var f = $("path.yesthumbnail").filter(function() {
         return $(this).attr("long") < Math.abs(bounds._southWest.lng) && $(this).attr("long") > Math.abs(bounds._northEast.lng) && $(this).attr("lat") < Math.abs(bounds._northEast.lat) && $(this).attr("lat") > Math.abs(bounds._southWest.lat);
     });
     var slicetot = 0;
