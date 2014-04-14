@@ -81,7 +81,7 @@ right: -85px;
 
 .t {
 stroke:black !important;
-stroke-width: 3px;
+stroke-width: 10px;
 stroke-opacity: 1;
 z-index: 10000;
 position: absolute;

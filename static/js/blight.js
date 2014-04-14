@@ -124,14 +124,14 @@ d3.json('static/out.json', function(collection) {
     $(function() {
         $('.t').tipsy({
             gravity: 's',
-            title: function() {
-                return "hello";
+            title: function(s) {
+                return this.id.replace(/_/g, " ");
             }
         });
         $('.f').tipsy({
             gravity: 's',
             title: function() {
-                return "hello";
+                return this.id.replace(/_/g, " ");
             }
         });
     });

@@ -1,24 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from random import randint
 import csv
 import json
-import random
 import os
-import math
-
-types = ["nora", "sheriff", "demo", "fixed"]
 
 featuredict = []
-investigates = [
-    'f',
-    'f',
-    'f',
-    'f',
-    't',
-    'f',
-    ]
+
 demos = 'BlightStatus_Demolitions.csv'
 
 counter = 0
@@ -35,7 +23,7 @@ def getThumbnail(address):
         return "yesthumbnail"
     return "nothumbnail"
 
-def getFeature(lat, long, address):
+def getFeature(lat, long, address, type):
 	feature = dict()
 	geom = dict()
 	feature["type"] = "Feature"
@@ -43,7 +31,7 @@ def getFeature(lat, long, address):
 	geom["coordinates"] = [long,lat]
 	geom["address"] = address.replace(" ", "_")
 	feature["geometry"] = geom
-	feature["properties"] = dict(category=types[randint(0,3)],thumbnail=getThumbnail(address.replace(" ", "_")), investigates=getInvestigates(address.replace(" ", "_")))
+	feature["properties"] = dict(category=type,thumbnail=getThumbnail(address.replace(" ", "_")), investigates=getInvestigates(address.replace(" ", "_")))
 	return feature
 
 def checkLatLong(
@@ -78,8 +66,7 @@ with open('BlightStatus_Demolitions.csv', 'rU') as csvfile:
             geom = dict()
             geom['coordinates'] = [lat, long]
             feature['geometry'] = geom
-            feature['abatement'] = 'demo'
-            featuredict.append(getFeature(lat,long, address))
+            featuredict.append(getFeature(lat,long, address, 'demo'))
             counter+=1
         except:
             print(row)
@@ -97,8 +84,7 @@ with open('Compliance.csv', 'rU') as csvfile:
         geom = dict()
         geom['coordinates'] = [lat, long]
         feature['geometry'] = geom
-        feature['abatement'] = 'fixed'
-        featuredict.append(getFeature(lat,long, address))
+        featuredict.append(getFeature(lat,long, address, 'fixed'))
         counter+=1
 
 with open('Nora.csv', 'rU') as csvfile:
@@ -114,8 +100,7 @@ with open('Nora.csv', 'rU') as csvfile:
             geom = dict()
             geom['coordinates'] = [lat, long]
             feature['geometry'] = geom
-            feature['abatement'] = 'nora'
-            featuredict.append(getFeature(lat,long, addres))
+            featuredict.append(getFeature(lat,long, addres, 'nora'))
             counter+=1
         except:
             print(row)
@@ -131,8 +116,7 @@ with open('Sheriff.csv', 'rU') as csvfile:
     	    geom = dict()
     	    geom['coordinates'] = [lat, long]
     	    feature['geometry'] = geom
-    	    feature['abatement'] = 'sheriff'
-    	    featuredict.append(getFeature(lat,long, address))
+    	    featuredict.append(getFeature(lat,long, address, 'sheriff'))
     	    counter+=1
         except:
             print(row)
