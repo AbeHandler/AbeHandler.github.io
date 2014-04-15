@@ -104,6 +104,15 @@ d3.json("static/out.json", function(collection) {
     var feature = g.selectAll("path")
         .data(collection.features)
         .enter().append("path")
+        .attr("class", function(d) {
+            return d.properties.category + " " + d.properties.investigates + " " + d.properties.thumbnail;
+        }).attr("id", function(d) {
+            return d.properties.address;
+        }).attr("lat", function(d) {
+            return Math.abs(d.geometry.coordinates[1]);
+        }).attr("long", function(d) {
+            return Math.abs(d.geometry.coordinates[0]);
+        })
         .attr("d", path);
 
     map.on("viewreset", function reset() {

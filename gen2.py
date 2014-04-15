@@ -67,8 +67,7 @@ with open('BlightStatus_Demolitions.csv', 'rU') as csvfile:
             geom = dict()
             geom['coordinates'] = [lat, long]
             feature['geometry'] = geom
-            if i % 500 == 0:
-                featuredict.append(getFeature(lat,long, address, 'demo'))
+            featuredict.append(getFeature(lat,long, address, 'demo'))
             counter+=1
         except:
             print(row)
@@ -88,8 +87,7 @@ with open('Compliance.csv', 'rU') as csvfile:
         geom = dict()
         geom['coordinates'] = [lat, long]
         feature['geometry'] = geom
-        if i % 500 == 0:
-            featuredict.append(getFeature(lat,long, address, 'fixed'))
+        featuredict.append(getFeature(lat,long, address, 'fixed'))
         counter+=1
 
 with open('Nora.csv', 'rU') as csvfile:
@@ -107,8 +105,7 @@ with open('Nora.csv', 'rU') as csvfile:
             geom = dict()
             geom['coordinates'] = [lat, long]
             feature['geometry'] = geom
-            if i % 500 == 0:
-                featuredict.append(getFeature(lat,long, addres, 'nora'))
+            featuredict.append(getFeature(lat,long, addres, 'nora'))
             counter+=1
         except:
             print(row)
@@ -126,13 +123,12 @@ with open('Sheriff.csv', 'rU') as csvfile:
     	    geom = dict()
     	    geom['coordinates'] = [lat, long]
     	    feature['geometry'] = geom
-            if i % 500 == 0:
-                featuredict.append(getFeature(lat,long, address, 'sheriff'))
+            featuredict.append(getFeature(lat,long, address, 'sheriff'))
     	    counter+=1
         except:
             print(row)
 
 type = dict(type='FeatureCollection', features=featuredict)
-f = open('static/out3.json', 'w')
+f = open('static/out.json', 'w')
 print(json.dumps(type), file=f)
 print(counter)
