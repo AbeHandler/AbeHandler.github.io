@@ -78,37 +78,90 @@ $(".t").mouseover(function() {
     alert("sh");
 });
 
-var map = new L.Map("map")
-    .setView(new L.LatLng(29.95, -90.05), 13)
-    .addLayer(new L.TileLayer("http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png"));
+var map = new L.Map("map", {
+    center: [29.95, -90.05],
+    zoom: 13,
+    minZoom: 10,
+    maxZoom: 18
+})
+    .addLayer(new L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'));
 
 map.on('moveend', function() {
     loadThumbs();
 });
 
-/* Initialize the SVG layer */
-map._initPathRoot();
+var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
-/* We simply pick up the SVG from the map object */
-var svg = d3.select("#map").select("svg"),
-    g = svg.append("g");
 
-/* Define the d3 projection */
-var path = d3.geo.path().projection(function project(x) {
-    var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
-    return [point.x, point.y];
-});
+d3.json('static/out.json', function(collection) {
+    var bounds = d3.geo.bounds(collection),
+        path = d3.geo.path().projection(project).pointRadius(function(d) {
+            return 2;
+        });
+    console.warn(path);
 
-/* Load and project/redraw on zoom */
-d3.json("static/out.json", function(collection) {
     var feature = g.selectAll("path")
         .data(collection.features)
-        .enter().append("path")
-        .attr("d", path);
-
-    map.on("viewreset", function reset() {
-        feature.attr("d", path);
+        .enter().append("path").attr("class", function(d) {
+            return d.properties.category + " " + d.properties.investigates + " " + d.properties.thumbnail;
+        }).attr("id", function(d) {
+            return d.properties.address;
+        }).attr("lat", function(d) {
+            return Math.abs(d.geometry.coordinates[1]);
+        }).attr("long", function(d) {
+            return Math.abs(d.geometry.coordinates[0]);
+        });
+    $(".t").on("click", function(e) {
+        var adr = "/" + this.id;
+        showDialog(adr);
     });
+
+    //$(".t").on("mouseover", function(e) {
+    //    alert("S");
+    //});
+
+    $(function() {
+        $('.t').tipsy({
+            gravity: 's',
+            title: function(s) {
+                return this.id.replace(/_/g, " ");
+            }
+        });
+        $('.f').tipsy({
+            gravity: 's',
+            title: function() {
+                return this.id.replace(/_/g, " ");
+            }
+        });
+    });
+
+    map.on("viewreset", reset);
+    reset();
+    loadThumbs();
+
+    // Reposition the SVG to cover the features.
+    function reset() {
+        console.warn(bounds);
+        var bottomLeft = project(bounds[0]),
+            topRight = project(bounds[1]);
+
+        svg.attr("width", topRight[0] - bottomLeft[0])
+            .attr("height", bottomLeft[1] - topRight[1])
+            .style("margin-left", bottomLeft[0] + "px")
+            .style("margin-top", topRight[1] + "px").attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+
+        g.attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+
+        feature.attr("d", path);
+    }
+
+    // Use Leaflet to implement a D3 geographic projection.
+    function project(x) {
+        var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
+        return [point.x, point.y];
+    }
+
 });
 
 function loadThumbs() {
