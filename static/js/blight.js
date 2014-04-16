@@ -2,10 +2,6 @@ $('#carousel').elastislide({
     minItems: 2
 });
 
-$(document).ready(function() {
-    loadThumbs();
-});
-
 $(function() {
     $("#dialog").dialog({
         autoOpen: false,
@@ -74,10 +70,6 @@ $(function() {
         });
 });
 
-$(".t").mouseover(function() {
-    alert("sh");
-});
-
 var map = new L.Map("map")
     .setView(new L.LatLng(29.95, -90.05), 13)
     .addLayer(new L.TileLayer("http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png"));
@@ -97,6 +89,8 @@ var svg = d3.select("#map").select("svg"),
 var path = d3.geo.path().projection(function project(x) {
     var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));
     return [point.x, point.y];
+}).pointRadius(function(d) {
+    return 2;
 });
 
 /* Load and project/redraw on zoom */
@@ -114,10 +108,14 @@ d3.json("static/out.json", function(collection) {
             return Math.abs(d.geometry.coordinates[0]);
         })
         .attr("d", path);
-
+    $(".t").on("click", function(e) {
+        var adr = "/" + this.id;
+        showDialog(adr);
+    });
     map.on("viewreset", function reset() {
         feature.attr("d", path);
     });
+    loadThumbs();
 });
 
 function loadThumbs() {
