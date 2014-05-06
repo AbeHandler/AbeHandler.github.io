@@ -1,1 +1,0 @@
-scp -r -P 3457 /Users/abramhandler/lens/AbeHandler.github.io/* akh2103@contractserver.thelensnola.org:/home/akh2103/blight
