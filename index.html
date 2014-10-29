@@ -1,62 +1,22 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Leaflet GeoJSON Example</title>
-	<meta charset="utf-8" />
+<title>Hello Strapdown</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-</head>
-<body>
+<xmp theme="united" style="display:none;">
+# Markdown text goes in here
 
-<!--NEW STUFF FOR ELECTION APP-->
-<script src="http://d3js.org/topojson.v1.min.js" type="text/javascript"></script>
-<script src="maps/orleanstopojson.min.js" type="text/javascript"></script>
-<!---->
+## Chapter 1
 
-    <a href="http://www.clickhole.com/article/we-put-700-red-dots-map-947">Clickhole: "We Put 700 Red Dots On A Map"</a>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+et dolore magna aliqua. 
 
-	<div id="map" style="width: 600px; height: 400px"></div>
+## Chapter 2
 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+</xmp>
 
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-
-	<script>
-		var map = L.map('map').setView([30, -90], 10);
-        var orleansgeojson = topojson.feature(orleanstopo, orleanstopo.objects.orleansgeojson)
-		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			id: 'examples.map-20v6611k'
-		}).addTo(map);
-
-
-		function onEachFeature(feature, layer) {
-			var popupContent = "<p>I started out as a GeoJSON " +
-					feature.geometry.type + ", but now I'm a Leaflet vector!</p>";
-
-			if (feature.properties && feature.properties.popupContent) {
-				popupContent += feature.properties.popupContent;
-			}
-
-			layer.bindPopup(popupContent);
-		}
-
-		L.geoJson(orleansgeojson, {
-
-			filter: function (feature, layer) {
-				if (feature.properties) {
-					// If the property "underConstruction" exists and is true, return false (don't render features under construction)
-					return feature.properties.underConstruction !== undefined ? !feature.properties.underConstruction : true;
-				}
-				return false;
-			},
-
-			onEachFeature: onEachFeature
-		}).addTo(map);
-
-	</script>
-</body>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
 </html>
