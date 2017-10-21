@@ -4,14 +4,29 @@ title: Home
 navigation_weight: 1
 ---
 <section class="hero">
-	<div class="small-container">
-    		<p class="sub-text">
-            Hi. You've found Abe Handler. I'm a PhD student in computer science at <a class="special" href="https://www.cics.umass.edu/">The University of Massachusetts</a>. I'm interested in natural language processing, machine learning and user-facing systems, especially for journalism, social science and public policy. My advisor is <a class="special" href="http://brenocon.com/">Brendan O'Connor</a> at <a class="special" href="http://slanglab.cs.umass.edu/"> SLANG Lab</a>.
+	<div class="subhero">
+    		<p class="big">
+            Abe Handler
+            </p>
+            <p >
+                        PhD student in computer science
             </p>
 	</div>
 </section>
+
 <div class="container">
-	<p class="post-hero center-text spacing">Scroll down to see my recent publications and projects.</p>
+
+	<p class="post-hero center-text spacing">
+        Hi. You've found Abe Handler. I'm interested in natural language processing, machine learning and user-facing systems, especially for journalism, social science and public policy. I talk about
+        my academic interests in more detail in my <a class="special" href="http://cics.umass.edu/"> research statement</a>. I'm lucky to work with <a class="special" href="http://brenocon.com/">Brendan O'Connor</a> at
+        <a class="special" href="https://slanglab.cs.umass.edu/">SLANG lab</a>
+        at the <a class="special" href="http://cics.umass.edu/"> University of Massachusetts</a>.
+        If you want to talk to me about something, you should send me an email at <b>abram.handler@gmail.com</b>.
+        <br><br>
+        Scroll down to see my recent publications and projects.
+        </p><p>
+
+    </p>
 </div>
 <div class="container">
 	<div class="columns spacing">

@@ -8,6 +8,8 @@ body {
 
 p {
 	line-height: 1.6em;
+    padding: 0px;
+    margin: 0px;
 }
 
 a {
@@ -107,10 +109,18 @@ div.content {
 }
 
 section.hero {
-	padding: 120px 0;
+	padding: 40px 0;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
 }
 
-p.sub-text {
+.big{
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.subhero{
 	font-size: 20px;
 	text-align: center;
 	line-height: 28px;
@@ -118,9 +128,12 @@ p.sub-text {
     text-align: center;
     line-height: 28px;
     background-color: white;
-    opacity: .75;
+    opacity: .8;
+    width: 50%;
+    margin: auto;
     font-weight: bold;
     color:black !important;
+    border:2px solid grey;
 }
 
 .special {
