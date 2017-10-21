@@ -61,11 +61,11 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
     Visualizing textual models with in-text and word-as-pixel highlighting.
     Abram Handler, Su Lin Blodgett and Brendan O'Connor. At WHI 2016 - Workshop on Human Interpretability in Machine Learning (at ICML 2016).<br><br>
     <p>
-    The <a href="http://slanglab.cs.umass.edu/topic-animator/">visualization</a> shown at right shows a topic model's token-level posterior memberships for U.S. presidential State of the Union speeches from 1946 to 2007.
+    The <a href="http://slanglab.cs.umass.edu/topic-animator/">visualization</a> shown at right shows a topic model's token-level posterior membership probabilities for a corpus of U.S. presidential State of the Union speeches from 1946 to 2007.
     </p>
     </div>
     <div class="column half">
-        <span class="bordered"> <img style="width:99%" src="https://media.giphy.com/media/26FffgPDJWNQVS69q/giphy.gif" width="430"></span>
+        <span class="bordered"> <img style="width:75%" src="/images/topic.png" width="430"></span>
     </div>
     </div>
 
@@ -75,7 +75,7 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
     </div>
     <div class="column half">
     <p>
-    Before I became a PhD student I worked as data journalist at <a href="http://thelensnola.org/">The Lens</a> in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a group of applications which collected city public records. It was a lot of fun.
+    Before I became a PhD student I worked as data journalist at <a href="http://thelensnola.org/">The Lens</a> in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a group of applications which collected city public records. It was a lot of fun!
     </p>
     </div>
 
