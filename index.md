@@ -75,7 +75,7 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
     </div>
     <div class="column half">
     <p>
-    Before I became a PhD student I worked as a software developer at The Lens in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a collection of applications which collected city public records.
+    Before I became a PhD student I worked as data journalist at <a href="http://thelensnola.org/">The Lens</a> in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a group of applications which collected city public records. It was a lot of fun.
     </p>
     </div>
 
