@@ -39,6 +39,7 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
 			<p><a href="https://slanglab.cs.umass.edu/Rookie"> Rookie: a unique approach for exploring news archives</a>. Abram Handler and Brendan O'Connor at the KDD workshop on data science and journalism, 2017.
             </p>
             <p>
+            <br>
             Rookie is a practical text analytics system written in Python. I started work on the system at <a href="https://thelensnola.org">The Lens</a> in New Orleans on a Knight <a href="https://www.knightfoundation.org/grants/201550791/">prototype</a> grant.
 			</p>
 		</div>
@@ -47,11 +48,36 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
 		</div>
 	</div>
 	<div class="columns spacing">
-        Software called <code><a href="https://github.com/slanglab/phrasemachine" >phrasemachine</a></code> helps ...
-
+        I helped create software called <code><a href="https://github.com/slanglab/phrasemachine">phrasemachine</a></code>
+        which finds important n-grams for downstream analysis.
+        <br>
         The philosophy of <code>phrasemachine</code> is explained the paper
         <a href="http://brenocon.com/handler2016phrases.pdf">Bag of What? Simple Noun Phrase Extraction for Text Analysis.</a>
         Abram Handler, Matthew J. Denny, Hanna Wallach, and Brendan O'Connor.
         Text as Data 2016.
 	</div>
+    <div class="columns spacing">
+    <div class="column half">
+    Visualizing textual models with in-text and word-as-pixel highlighting.
+    Abram Handler, Su Lin Blodgett and Brendan O'Connor. At WHI 2016 - Workshop on Human Interpretability in Machine Learning (at ICML 2016).<br><br>
+    <p>
+    The <a href="http://slanglab.cs.umass.edu/topic-animator/">visualization</a> shown at right shows a topic model's token-level posterior memberships for U.S. presidential State of the Union speeches from 1946 to 2007.
+    </p>
+    </div>
+    <div class="column half">
+        <span class="bordered"> <img style="width:99%" src="https://media.giphy.com/media/26FffgPDJWNQVS69q/giphy.gif" width="430"></span>
+    </div>
+    </div>
+
+    <div class="columns spacing">
+    <div class="column half">
+        <span class="bordered"> <img style="width:99%" src="/images/vault.jpg" width="430"></span>
+    </div>
+    <div class="column half">
+    <p>
+    Before I became a PhD student I worked as a software developer at The Lens in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a collection of applications which collected city public records.
+    </p>
+    </div>
+
+    </div>
 </div>
