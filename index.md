@@ -36,7 +36,7 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
 	</div>
 	<div class="columns spacing">
 		<div class="column half">
-			<p><a href="https://slanglab.cs.umass.edu/Rookie"> Rookie: a unique approach for exploring news archives</a>. Abram Handler and Brendan O'Connor at the KDD workshop on data science and journalism, 2017.
+			<p><a href="https://slanglab.cs.umass.edu/Rookie"> Rookie: a unique approach for exploring news archives</a>. Abram Handler and Brendan O'Connor at the KDD workshop on Data Science + Journalism, 2017.
             </p>
             <p>
             <br>
@@ -58,10 +58,10 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
 	</div>
     <div class="columns spacing">
     <div class="column half">
-    Visualizing textual models with in-text and word-as-pixel highlighting.
+    <a href='https://arxiv.org/pdf/1606.06352.pdf'>Visualizing textual models with in-text and word-as-pixel highlighting.</a>
     Abram Handler, Su Lin Blodgett and Brendan O'Connor. At WHI 2016 - Workshop on Human Interpretability in Machine Learning (at ICML 2016).<br><br>
     <p>
-    The <a href="http://slanglab.cs.umass.edu/topic-animator/">visualization</a> shown at right shows a topic model's token-level posterior membership probabilities for a corpus of U.S. presidential State of the Union speeches from 1946 to 2007.
+    I created a <a href="http://slanglab.cs.umass.edu/topic-animator/">visualization</a> (right) which shows a topic model's token-level posterior membership probabilities for a corpus of U.S. presidential State of the Union speeches from 1946 to 2007.
     </p>
     </div>
     <div class="column half">
@@ -75,7 +75,7 @@ Cara Magliozzi, Joshua McDuffie, and Brendan O’Connor at EMNLP 2017.
     </div>
     <div class="column half">
     <p>
-    Before I became a PhD student I worked as data journalist at <a href="http://thelensnola.org/">The Lens</a> in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a group of applications which collected city public records. It was a lot of fun!
+    Before I became a PhD student I worked as data journalist at <a href="http://thelensnola.org/">The Lens</a> in New Orleans where I lead development of <a href="http://thelensnola.org/thevault/">The Vault</a>, a collection of applications which which helped citizens better find and make use of public records. I also helped <a href="https://github.com/ThomasThoren">Tom Thoren</a> create the first <a href="http://elections.thelensnola.org">live election maps</a> in Louisiana. It was a lot of fun!
     </p>
     </div>
 
