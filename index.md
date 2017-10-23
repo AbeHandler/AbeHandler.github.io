@@ -23,7 +23,7 @@ navigation_weight: 1
         I'm lucky to work with <a class="special" href="http://brenocon.com/">Brendan O'Connor</a> at
         <a class="special" href="https://slanglab.cs.umass.edu/">SLANG lab</a>
         at the <a class="special" href="http://cics.umass.edu/"> University of Massachusetts</a>.
-        I'm on <a class="special" href="https://github.com/AbeHandler">Github</a> and <a class="special" href="https://twitter.com/abehandler">Twitter</a> but if you want to talk to me about something, you should send me an email at <b>abram.handler@gmail.com</b>. I'm on
+        I'm on <a class="special" href="https://github.com/AbeHandler">Github</a> and <a class="special" href="https://twitter.com/abehandler">Twitter</a> but if you want to talk to me about something, you should send me an email at <b>abram.handler@gmail.com</b>.
         <br><br>
         Scroll down to see my recent publications and projects.
         </p><p>
