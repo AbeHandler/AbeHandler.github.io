@@ -14,7 +14,7 @@ navigation_weight: 1
   gtag('config', 'UA-57735520-1');
 </script>
 
-
+<a href="/blog.html">Blog</a>
 
 <section class="hero">
 	<div class="subhero">
