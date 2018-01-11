@@ -4,8 +4,7 @@ title: Blog
 navigation_weight: 2
 ---
 <div class="container">
-	<h2 class="spacing">Paper notes</h2>
-
+	<h3 class="spacing">Some notes I've written up on CS papers, mostly from NLP</h3>
 	<div class="blog-posts">
 		{% for post in site.posts %}
 			<div class="blog-post spacing">
