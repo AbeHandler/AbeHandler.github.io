@@ -4,7 +4,7 @@ title:  "Neural Summarization by Extracting Sentences and Words"
 date:   2018-01-10 13:40:53 -0400
 categories: summarization neuralnets
 ---
-* Title: Neural Summarization by Extracting Sentences and Words
+* Title: Neural Summarization by Extracting Sentences and Words [PDF](https://arxiv.org/pdf/1603.07252.pdf)
 * Authors: Jianpeng Cheng and Mirella Lapata
 * Venue: ACL 2016
 
