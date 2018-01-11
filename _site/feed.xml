@@ -1,13 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-23T13:33:20-04:00</updated><id>http://localhost:4000/</id><title type="html">Abe Handler</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2017/10/21/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2017-10-21T13:40:53-04:00</published><updated>2017-10-21T13:40:53-04:00</updated><id>http://localhost:4000/jekyll/update/2017/10/21/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/10/21/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-11T11:00:20-05:00</updated><id>http://localhost:4000/</id><title type="html">Abe Handler</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Neural Summarization by Extracting Sentences and Words</title><link href="http://localhost:4000/summarization/neuralnets/2018/01/10/neural-summarization-by-extracting-sentences-and-words.html" rel="alternate" type="text/html" title="Neural Summarization by Extracting Sentences and Words" /><published>2018-01-10T12:40:53-05:00</published><updated>2018-01-10T12:40:53-05:00</updated><id>http://localhost:4000/summarization/neuralnets/2018/01/10/neural-summarization-by-extracting-sentences-and-words</id><content type="html" xml:base="http://localhost:4000/summarization/neuralnets/2018/01/10/neural-summarization-by-extracting-sentences-and-words.html">&lt;ul&gt;
+  &lt;li&gt;Title: Neural Summarization by Extracting Sentences and Words &lt;a href=&quot;https://arxiv.org/pdf/1603.07252.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Authors: Jianpeng Cheng and Mirella Lapata&lt;/li&gt;
+  &lt;li&gt;Venue: ACL 2016&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;I found this paper on neural summarization while searching for neural network approaches
+to sentence compression. Mirella Lapata has co-authored &lt;a href=&quot;http://www.jair.org/media/2433/live-2433-3731-jair.pdf&quot;&gt;influential papers&lt;/a&gt;
+on compression using classical methods, so I was curious to read his deep learning approach.
+The paper also uses &lt;a href=&quot;https://arxiv.org/abs/1506.03134&quot;&gt;&lt;em&gt;pointer networks&lt;/em&gt;&lt;/a&gt;, which I have seen in
+&lt;a href=&quot;https://arxiv.org/abs/1704.04368&quot;&gt;other recent&lt;/a&gt; summarization papers, another reason I chose to read this one in depth.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;According to Cheng and Lapata (sec 7), the main contributions of the paper are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;offering a hierarchical, neural model which creates a summary by choosing words and sentences, which they say reflects “the nature of the summarization task”.&lt;/li&gt;
+  &lt;li&gt;generation by extraction, by which they mean generating output, using words from a single document (rather than the vocabulary of the whole corpus).&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;p&gt;The paper is a nice synthesis and extension of much recent work on neural summarization using sequence-to-sequence models, such as &lt;a href=&quot;https://arxiv.org/pdf/1509.00685.pdf&quot;&gt;Rush, Chopra, Weston (2015)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;nutshell&quot;&gt;Nutshell&lt;/h3&gt;
+
+&lt;p&gt;The authors collect gold standard summaries by downloading article/highlight summary summary pairs from the DailyMail, &lt;a href=&quot;https://arxiv.org/pdf/1606.02858.pdf&quot;&gt;a common dataset&lt;/a&gt;. They then use a series of hand-written rules to identify which sentences from an article ‘‘match a highlight’’. They also filter articles with highlights containing words which are &lt;em&gt;not&lt;/em&gt; drawn from a given document, as their model generates ‘‘by extraction’’.&lt;/p&gt;
+
+&lt;p&gt;Using this DailyMail dataset for supervision, the authors present a somewhat complex, multi-component neural network model which:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;uses a convolutional neural network (CNN) to create a sentence embedding for each sentence in the input document&lt;/li&gt;
+  &lt;li&gt;feeds the sequence of sentence embeddings into an LSTM to create a document embedding&lt;/li&gt;
+  &lt;li&gt;decodes the document embedding timestep-by-timestep&lt;/li&gt;
+  &lt;li&gt;uses the state of the decoder as input to a &lt;strong&gt;hierarchical&lt;/strong&gt; attention mechanism over first (a) each sentence in the document and then (b) each word type in the document to finally generate a word for the output sequence.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;They then evaluate their model against competing approaches using ROUGE scores on the &lt;a href=&quot;http://duc.nist.gov/&quot;&gt;DUC 2002&lt;/a&gt; and DailyMail datasets.&lt;/p&gt;
+
+&lt;p&gt;The authors argue that that step 4 is a hybrid of extractive and true abstractive summarization. In many respects, step 4 (section 4.3 in the paper) represents the major contribution of the work.&lt;/p&gt;
+
+&lt;h3 id=&quot;details&quot;&gt;Details&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In section 4.3, the authors present a model which generates a word in a summary instead of a label for each sentence in the input sequence. Doesn’t this then imply that the summary must have as many word tokens as the number of sentences in the document? If so, this is a sort of strange constraint for a model. If the pitch for this approach is that it offers a model which reflects “the nature of the summarization task”, this seems like a significant limitation.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Title: Neural Summarization by Extracting Sentences and Words PDF Authors: Jianpeng Cheng and Mirella Lapata Venue: ACL 2016</summary></entry></feed>
