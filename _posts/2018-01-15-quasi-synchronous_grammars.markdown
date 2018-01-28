@@ -20,4 +20,4 @@ At a high level, the paper does the following:
 
 ## The formalism
 
-QGs are an extension of an earlier formalism: the synchronous grammar.  $T_1$
+QGs are an extension of an earlier formalism: the synchronous grammar.  $$T_1$$
