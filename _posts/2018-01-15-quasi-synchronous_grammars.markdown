@@ -17,3 +17,7 @@ At a high level, the paper does the following:
 1. Introduce the QG formalism
 2. Describe how to parameterize a probabilistic QG
 3. Evaluate a QG on a machine translation task.
+
+## The formalism
+
+QGs are an extension of an earlier formalism: the synchronous grammar.  $T_1$
