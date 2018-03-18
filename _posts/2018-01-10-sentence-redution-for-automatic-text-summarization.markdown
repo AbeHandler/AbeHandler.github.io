@@ -16,7 +16,7 @@ To shorten a sentence, Jing does the following:
 
 - assigns an **importance score** using WordNet to each phrase in the sentence.
 - uses a supervised corpus of summary--document pairs to determine the probability of pruning a constituent subtree of a given type, conditioned on its parent node.
-- uses a parser and lexical resource to identify mandatory grammatical components, guided by manual rules.
+- uses a constituent parser and lexical resource to identify mandatory grammatical components, guided by manual rules.
 - traverses the constituent parse tree from top to bottom, pruning subtrees which (1) are not grammaticality necessary (2) have a high probably of removal by a human annotator and (3) have low importance.
 
 Jing evaluates her method using a custom metric, the ''success rate'', which measures the degree of overlap between a computer and a human annotator.
@@ -27,4 +27,4 @@ One thing which is striking is the deep similarity between this work and later a
 
 Based on 20 years of research, it seems like the sentence compression agenda in NLP might be [more data](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41393.pdf) + better modeling = closer automated replication of human summarization decisions. (As measured by ROUGE score or Pyramid or some other metric).
 
-This paradigm is common across NLP. But for summarization, the approach often annoys me: it seems obvious that different kinds of users will have different information needs. Query-focused summarization is supposed to address this issue, but I'm sort of dubious that there even exists a "gold standard", *perfect* summary for a given query. There seem to be deep limitations to this "annotate and model" paradigm, at least for sentence compression. Maybe a topic for a  [summarization](https://summarization2017.github.io/) workshop down the line.
+This paradigm is common across NLP. But for summarization, the approach often annoys me: it seems obvious that different kinds of users will have different information needs. Query-focused summarization is supposed to address this issue, but I'm sort of dubious that there even exists a "gold standard", *perfect* summary for a given query. There seem to be deep limitations to this "annotate and model" paradigm, at least for sentence compression.

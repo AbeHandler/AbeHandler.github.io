@@ -37,5 +37,5 @@ They then evaluate their model against competing approaches using ROUGE scores o
 
 The authors argue that that step 4 is a hybrid of extractive and true abstractive summarization. In many respects, step 4 (section 4.3 in the paper) represents the major contribution of the work.
 
-### Details
+### Comments
 - In section 4.3, the authors present a model which generates a word in a summary instead of a label for each sentence in the input sequence. Doesn't this then imply that the summary must have as many word tokens as the number of sentences in the document? If so, this is a sort of strange constraint for a model. If the pitch for this approach is that it offers a model which reflects "the nature of the summarization task", this seems like a significant limitation.
