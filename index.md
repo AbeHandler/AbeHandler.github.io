@@ -14,7 +14,7 @@ navigation_weight: 1
   gtag('config', 'UA-57735520-1');
 </script>
 
-<a href="/blog.html">Blog</a>
+<!-- <a href="/blog.html">Blog</a> -->
 
 <section class="hero">
 	<div class="subhero">
@@ -34,7 +34,7 @@ navigation_weight: 1
         my academic interests in more detail in my <a class="special" href="/static/statement.pdf"> research statement</a> and my background in more detail in my <a class="special" href="/static/cv.pdf"> CV</a>.
         <br><br>
         I'm lucky to work with <a class="special" href="http://brenocon.com/">Brendan O'Connor</a> at
-        <a class="special" href="https://slanglab.cs.umass.edu/">SLANG lab</a>
+        <a class="special" href="http://slanglab.cs.umass.edu/">SLANG lab</a>
         at the <a class="special" href="http://cics.umass.edu/"> University of Massachusetts</a>.
         I'm on <a class="special" href="https://github.com/AbeHandler">Github</a> and <a class="special" href="https://twitter.com/abehandler">Twitter</a> but if you want to talk to me about something, you should send me an email at <b>abram.handler@gmail.com</b>.
         <br><br>
