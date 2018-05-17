@@ -5,7 +5,10 @@ paper asks: to what extent can LSTM sequence models can learn syntactic dependen
 which might be more obviously encoded with hierarchical representations. The authors focus
 on a particular syntactic dependency, subject--verb agreement, which is "typically regarded as
 evidence for hierarchical structure in human language". This paper tests if RNNs
-can represent this dependency between subject and verb.
+can represent this dependency between subject and verb. LTSMs are often said to
+learn long-range relationships between words (syntactic or otherwise). Understanding
+their capacity to learn particular syntactic constraints would help illuminate
+both their strengths and weaknesses for modeling human language.
 
 The authors make this question concrete by presenting a new "number prediction" task:
 a LSTM is shown a sentence of words up to a given verb. The network is then trained to predict if the verb is singular
@@ -25,39 +28,23 @@ would be able to ascertain that "keys" should agree with "are", even with such i
 nouns. The paper calls such nouns "agreement attractors", citing [Bock and Miller, 1991](
 https://www.ncbi.nlm.nih.gov/pubmed/2001615)).
 
-
-
-One typical selling point for LTSMs is that they can try to learn long-range dependencies
-between words, unlike an ngram model which only looks at a few (almost always less than five or six) prior symbols.
-In this work, the authors ask: can LSTMs learn such syntactic information.
-
-Because syntactic parses (e.g. a dependency parse) can represent the dependency
-between subjects and verbs, the authors can easily create a large corpus for the
-number prediction task (they use English Wikipedia).
-
-
-
-One simple heuristic, in principle available to sequence models, is simply using
-the most recent noun to predict the upcoming verb.
-
-The authors thus introduce an additional challenge for the LSTM, by specifically
-examining cases with such "agreement attraction errors."
-is a noun with an opposite number from the target verb which occurs in the sequence
-between the subject and the verb.
-
 The primary empirical contribution of this paper is testing the performance of
 LSTMs on the number prediction task. The authors automatically generate a corpus
-of more than a million number prediction problems and train a traditional LSTM
+of more than a million number prediction problems from English Wikipedia (using
+dependency parses to find syntactic relationships) and train a traditional LSTM
 to read in an input sequence and then predict the number of the verb with a
 logistic regression classifier. They also test a baseline version of this classifier
 which only uses a sequence of preceding nouns without access to function words.
 
-In general, LSTMs perform well at this task, achieving an error rate of only .83%
-with an increased error of 4.5% for the noun only model. The authors note that
-this suggests that LSTMs make use of grammatical function words to predict a
-verb's number. Similarly, error rates increased as one or more intervening
-attractors were added to the number prediction problem, with dramatically decreasing
-performance for the noun only models.
+In general, the authors find that LSTMs perform well at this task, achieving an error rate of only .83%
+with no attractors (with an increased error of 4.5% for the noun only model).
+The error rate increases as the distance and number of agreement attractors increase.
+
+The authors note that the higher error rate for the noun-only model suggests that
+LSTMs make use of grammatical function words to predict a
+verb's number.
+
+
 
 The authors perform PCA on the word vectors from the model while also assigning
 each vector with its expected (most common) POS tag from the corpus. The PCA
