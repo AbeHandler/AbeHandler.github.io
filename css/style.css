@@ -62,7 +62,6 @@ footer {
 }
 
 section.hero {
-	color: #fff;
 	background-image: url('/images/bg.png');
 	background-size: cover;
 }
@@ -73,7 +72,6 @@ p.post-hero {
 }
 
 header a,
-section.hero a,
 footer a {
 	text-decoration: none;
 	color: #ffffff;
