@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>{{ page.title }}</title>
 		<link rel="stylesheet" href="/css/style.css">
 	</head>
 
@@ -13,55 +13,27 @@
 			<div class="container">
 				<nav class="main-nav">
 					<ul>
-						
-						
-							
-						
-							
+						{% assign navigation_pages = site.html_pages | sort: 'navigation_weight' %}
+						{% for p in navigation_pages %}
+							{% if p.navigation_weight %}
 								<li>
-									<a href="/" >
-										Home
+									<a href="{{ p.url }}" {% if p.url == page.url %}class="active"{% endif %}>
+										{{ p.title }}
 									</a>
 								</li>
-							
-						
-							
-								<li>
-									<a href="/blog.html" >
-										Blog
-									</a>
-								</li>
-							
-						
+							{% endif %}
+						{% endfor %}
 					</ul>
 				</nav>
 				<h1><a href="/">&nbsp;<strong></strong></a></h1>
 			</div>
 
 		</header>-->
+		<section class="hero">
 
-		<div class="content">
-			<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
-
+		</section>
+		<div class="content lowpad">
+			{{ content }}
 		</div>
 		<footer>
 			<div class="container">
