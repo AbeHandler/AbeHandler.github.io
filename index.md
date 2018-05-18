@@ -31,7 +31,7 @@ navigation_weight: 1
 
 	<p class="post-hero center-text spacing">
         Hi. You've found Abe Handler. I'm interested in natural language processing, machine learning and user-facing systems, especially for journalism, social science and public policy. I talk about
-        my academic interests in more detail in my <a class="special" href="/static/statement.pdf"> research statement</a> and my background in more detail in my <a class="special" href="/static/cv.pdf"> CV</a>.
+        my academic interests in more detail in my <a class="special" href="/static/statement.pdf"> research statement</a> and my background in more detail in my <a class="special" href="/static/cv.pdf"> CV</a>. Sometimes I post notes about NLP papers <a href="/blog.html">here</a>.
         <br><br>
         I'm lucky to work with <a class="special" href="http://brenocon.com/">Brendan O'Connor</a> at
         <a class="special" href="http://slanglab.cs.umass.edu/">SLANG lab</a>
@@ -40,7 +40,6 @@ navigation_weight: 1
         <br><br>
         Scroll down to see my recent publications and projects.
         </p><p>
-
     </p>
 </div>
 <div class="container">

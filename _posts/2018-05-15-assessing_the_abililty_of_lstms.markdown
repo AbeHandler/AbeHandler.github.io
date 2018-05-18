@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Sentence Reduction for Automatic Text Summarization"
-date:   2018-01-11 13:40:53 -0400
-categories: summarization compression
+title:  "Assessing the Ability of LSTMs to Learn Syntax-Sensitive Dependencies"
+date:   2018-05-15
+categories: syntax LSTMs
 ---
 * Title: Assessing the Ability of LSTMs to Learn Syntax-Sensitive Dependencies [PDF](https://arxiv.org/pdf/1611.01368.pdf)
 * Authors: Tal Linzen, Emmanuel Dupoux and Yoav Goldberg
-
+* Venue: TAACL (2016)
 
 LSTMs are sequence models, which represent natural language as an incremental
 series of symbols. This is different from hierarchical models (e.g. PCFGs) which

@@ -48,7 +48,7 @@
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">Sentence Reduction for Automatic Text Summarization</h1>
     <p class="post-meta">
-      <time datetime="2018-01-11T10:40:53-07:00" itemprop="datePublished">
+      <time datetime="2018-01-11T12:40:53-05:00" itemprop="datePublished">
         
         Jan 11, 2018
       </time>
@@ -71,7 +71,7 @@
 <ul>
   <li>assigns an <strong>importance score</strong> using WordNet to each phrase in the sentence.</li>
   <li>uses a supervised corpus of summary–document pairs to determine the probability of pruning a constituent subtree of a given type, conditioned on its parent node.</li>
-  <li>uses a parser and lexical resource to identify mandatory grammatical components, guided by manual rules.</li>
+  <li>uses a constituent parser and lexical resource to identify mandatory grammatical components, guided by manual rules.</li>
   <li>traverses the constituent parse tree from top to bottom, pruning subtrees which (1) are not grammaticality necessary (2) have a high probably of removal by a human annotator and (3) have low importance.</li>
 </ul>
 
@@ -83,7 +83,7 @@
 
 <p>Based on 20 years of research, it seems like the sentence compression agenda in NLP might be <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41393.pdf">more data</a> + better modeling = closer automated replication of human summarization decisions. (As measured by ROUGE score or Pyramid or some other metric).</p>
 
-<p>This paradigm is common across NLP. But for summarization, the approach often annoys me: it seems obvious that different kinds of users will have different information needs. Query-focused summarization is supposed to address this issue, but I’m sort of dubious that there even exists a “gold standard”, <em>perfect</em> summary for a given query. There seem to be deep limitations to this “annotate and model” paradigm, at least for sentence compression. Maybe a topic for a  <a href="https://summarization2017.github.io/">summarization</a> workshop down the line.</p>
+<p>This paradigm is common across NLP. But for summarization, the approach often annoys me: it seems obvious that different kinds of users will have different information needs. Query-focused summarization is supposed to address this issue, but I’m sort of dubious that there even exists a “gold standard”, <em>perfect</em> summary for a given query. There seem to be deep limitations to this “annotate and model” paradigm, at least for sentence compression.</p>
 
   </div>
 
