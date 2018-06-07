@@ -12,17 +12,18 @@ categories: summarization neuralnets
 
 I found this paper on neural summarization while searching for neural network approaches
 to sentence compression. Mirella Lapata has co-authored [influential papers](http://www.jair.org/media/2433/live-2433-3731-jair.pdf)
-on compression using classical methods, so I was curious to read his deep learning approach.
+on compression using classical methods, so I was curious to read her deep learning approach.
 The paper also uses [*pointer networks*](https://arxiv.org/abs/1506.03134), which I have seen in
 [other recent](https://arxiv.org/abs/1704.04368) summarization papers, another reason I chose to read this one in depth.
 
-According to Cheng and Lapata (sec 7), the main contributions of the paper are:
-  - offering a hierarchical, neural model which creates a summary by choosing words and sentences, which they say reflects "the nature of the summarization task".
-  - generation by extraction, by which they mean generating output, using words from a single document (rather than the vocabulary of the whole corpus).
+I am not quite sure what I make of this paper. The authors present a giant neural network (an LSTM on top of a CNN) which is broadly in line with a lot of similar recent work in other areas of NLP. The major contributions seem to be:
+  1. a "hierarchical" attention module which generates words based on (1) attention over the input sequence, which then informs (2) a distribution over words in the document
+  2. generation by extraction, meaning generating output using words from a single document (rather than, say, the vocabulary of the entire corpus)
+  3. similar ROUGE scores to state-of-the-art models without explicitly encoding linguistic knowledge
 
-The paper is a nice synthesis and extension of much recent work on neural summarization using sequence-to-sequence models, such as [Rush, Chopra, Weston (2015)](https://arxiv.org/pdf/1509.00685.pdf).
+The paper is also a nice synthesis and extension of much recent work on neural summarization using sequence-to-sequence models, such as [Rush, Chopra, Weston (2015)](https://arxiv.org/pdf/1509.00685.pdf).
 
-### Nutshell
+### Details
 
 The authors collect gold standard summaries by downloading article/highlight summary summary pairs from the DailyMail, [a common dataset](https://arxiv.org/pdf/1606.02858.pdf). They then use a series of hand-written rules to identify which sentences from an article ''match a highlight''. They also filter articles with highlights containing words which are *not* drawn from a given document, as their model generates ''by extraction''.
 
@@ -37,5 +38,5 @@ They then evaluate their model against competing approaches using ROUGE scores o
 
 The authors argue that that step 4 is a hybrid of extractive and true abstractive summarization. In many respects, step 4 (section 4.3 in the paper) represents the major contribution of the work.
 
-### Comments
-- In section 4.3, the authors present a model which generates a word in a summary instead of a label for each sentence in the input sequence. Doesn't this then imply that the summary must have as many word tokens as the number of sentences in the document? If so, this is a sort of strange constraint for a model. If the pitch for this approach is that it offers a model which reflects "the nature of the summarization task", this seems like a significant limitation.
+### Comment
+This model appears to generate a word in a summary instead of a label for each sentence in the input document. Doesn't this then imply that the summary must have as many word tokens as the number of sentences in the document? If so, this is a sort of strange constraint for a model.

@@ -4,6 +4,8 @@ title:  "Sentence Reduction for Automatic Text Summarization"
 date:   2018-01-11 13:40:53 -0400
 categories: summarization compression
 ---
+
+
 * Title: Sentence Reduction for Automatic Text Summarization [PDF](http://delivery.acm.org/10.1145/980000/974190/p310-jing.pdf?ip=74.105.10.86&id=974190&acc=OPEN&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E6D218144511F3437&CFID=850146679&CFTOKEN=43433700&__acm__=1515685122_a0b141d0232617369741d8940165acb6)
 * Authors: Hongyan Jing
 * Venue: Applied Natural Language Processing Conference (2000)

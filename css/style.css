@@ -10,6 +10,16 @@ body {
 	padding-top: 5px
 }
 
+.thin{
+	width: 70%;
+	margin: auto;
+	padding: 10px;
+}
+
+.whitebackground{
+	background: white
+}
+
 p {
 	line-height: 1.6em;
     padding: 0px;
