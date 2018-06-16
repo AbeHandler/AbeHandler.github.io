@@ -44,7 +44,7 @@ navigation_weight: 1
 <div class="container">
 
 <div class="columns spacing">
-  Relational Summarization for Corpus Analysis. Abram Handler and Brendan O’Connor at NAACL 2018.
+  <a href="https://s3.us-west-2.amazonaws.com/www.abehandler.com/static/N18-1159.pdf">Relational Summarization for Corpus Analysis.</a> Abram Handler and Brendan O’Connor at NAACL 2018.
 </div>
 	<div class="columns spacing">
 		<a href="https://slanglab.cs.umass.edu/PoliceKillingsExtraction/">Identifying civilians killed by police with distantly supervised entity-event
