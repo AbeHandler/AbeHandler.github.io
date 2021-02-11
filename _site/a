@@ -1,3 +1,0 @@
-aws s3 cp _site/syntax/lstms/2018/05/15/assessing_the_abililty_of_lstms.html s3://www.abehandler.com/syntax/lstms/2018/05/15/assessing_the_abililty_of_lstms.html --acl public-read --content-type text/html
-aws s3 cp _site/summarization/compression/2018/01/11/sentence-redution-for-automatic-text-summarization.html s3://www.abehandler.com/summarization/compression/2018/01/11/sentence-redution-for-automatic-text-summarization.html --acl public-read --content-type text/html
-aws s3 cp _site/summarization/neuralnets/2018/01/10/neural-summarization-by-extracting-sentences-and-words.html s3://www.abehandler.com/summarization/neuralnets/2018/01/10/neural-summarization-by-extracting-sentences-and-words.html --acl public-read --content-type text/html
