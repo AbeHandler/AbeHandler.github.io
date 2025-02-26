@@ -2,16 +2,15 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | CreateWithVR</title>
+    <title>Unity WebGL Player | yt_Test</title>
     <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
     <div id="unity-container">
-      <div id="unity-canvas-container" style="width: 100%; height: 100%;">
+      <div id="unity-canvas-container">
         <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
       </div>
       <div id="unity-loading-bar">
@@ -25,7 +24,7 @@
         <button id="entervr" value="Enter VR" disabled>VR</button>
         <button id="enterar" value="Enter AR" disabled>AR</button>
         <div id="unity-webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
-        <div id="unity-build-title">CreateWithVR</div>
+        <div id="unity-build-title">yt_Test</div>
       </div>
     </div>
     <script>
@@ -36,9 +35,9 @@
         frameworkUrl: buildUrl + "/bld.framework.js",
         codeUrl: buildUrl + "/bld.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "com.Unity.CreateWithVR",
-        productName: "CreateWithVR",
-        productVersion: "0.1.0",
+        companyName: "DefaultCompany",
+        productName: "yt_Test",
+        productVersion: "0.1",
       };
 
       var container = document.querySelector("#unity-container");
@@ -50,6 +49,8 @@
       var unityInstance = null;
       
 
+      canvasContainer.style.width = "700px";
+      canvasContainer.style.height = "400px";
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
